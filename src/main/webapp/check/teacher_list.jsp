@@ -23,7 +23,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" >学生信息修改</h4>
+                <h4 class="modal-title" >教师信息修改</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
@@ -111,12 +111,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">学生添加</h4>
+                <h4 class="modal-title" id="myModalLabel">教师添加</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label for="stuNumber_add_input" class="col-sm-2 control-label">学号</label>
+                        <label for="stuNumber_add_input" class="col-sm-2 control-label">工号</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="number" id="stuNumber_add_input" placeholder="学号">
                             <span class="help-block"></span>
@@ -172,7 +172,7 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="col-md-12">
-                        <h3 class="animated fadeInLeft">学生信息</h3>
+                        <h3 class="animated fadeInLeft">教师信息</h3>
                     </div>
                 </div>
             </div>
@@ -182,7 +182,7 @@
             <div class="col-md-5">
                 <form class="form-inline">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="search" placeholder="输入学号或姓名进行搜索">
+                        <input type="text" class="form-control" id="search" placeholder="输入工号或姓名进行搜索">
                     </div>
                     <button type="button" class="btn btn-info" id="stu_search_modal_button">
                         <span class="glyphicon glyphicon-search"></span> 搜索</button>
@@ -199,7 +199,7 @@
                 <thead>
                     <tr>
                         <th> <input type="checkbox" id="checkall"> </th>
-                        <th>学号</th>
+                        <th>工号</th>
                         <th>姓名</th>
                         <th>性别</th>
                         <th>邮箱</th>
