@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.PaperMapper">
+  <resultMap id="BaseResultMap" type="com.project.bean.Paper">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="p_name" jdbcType="VARCHAR" property="pName" />
+    <result column="stu_number" jdbcType="INTEGER" property="stuNumber" />
+    <result column="p_progress" jdbcType="INTEGER" property="pProgress" />
+    <result column="p_status" jdbcType="VARCHAR" property="pStatus" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="paper" jdbcType="VARCHAR" property="paper" />
+    <result column="p_time" jdbcType="VARCHAR" property="pTime" />
+    <result column="p_author" jdbcType="VARCHAR" property="pAuthor" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+  </resultMap>
+  <resultMap id="WithStuResultMap" type="com.project.bean.Paper">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="p_name" jdbcType="VARCHAR" property="pName" />
+    <result column="stu_number" jdbcType="INTEGER" property="stuNumber" />
+    <result column="p_progress" jdbcType="INTEGER" property="pProgress" />
+    <result column="p_status" jdbcType="VARCHAR" property="pStatus" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="paper" jdbcType="VARCHAR" property="paper" />
+    <result column="p_time" jdbcType="VARCHAR" property="pTime" />
+    <result column="p_author" jdbcType="VARCHAR" property="pAuthor" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <association property="tas" javaType="com.project.bean.TAS">
+      <id column="number" property="number"/>
+      <result column="name" property="name"/>
+    </association>
+  </resultMap>
+
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+
+  <sql id="Base_Column_List">
+    id, p_name, stu_number, p_progress, p_status, content, paper, p_time, p_author, reason
+  </sql>
+  <sql id="WithStu_Column_List">
+    id, p_name, stu_number, p_progress, p_status, content, paper, p_time,t.number, t.name,p_author, reason
+  </sql>
+
+  <select id="selectByExampleWithStu" parameterType="com.project.bean.PaperExample" resultMap="WithStuResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="WithStu_Column_List" />
+    from paper
+    LEFT JOIN t_a_s t ON stu_number=t.number
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKeyWithStu" parameterType="java.lang.Integer" resultMap="WithStuResultMap">
+    select
+    <include refid="WithStu_Column_List" />
+    from paper
+    LEFT JOIN t_a_s t ON stu_number=t.number
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByExample" parameterType="com.project.bean.PaperExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from paper
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from paper
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from paper
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.project.bean.PaperExample">
+    delete from paper
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.project.bean.Paper">
+    insert into paper (id, p_name, stu_number,
+                       p_progress, p_status, content,
+                       paper, p_time, p_author,
+                       reason)
+    values (#{id,jdbcType=INTEGER}, #{pName,jdbcType=VARCHAR}, #{stuNumber,jdbcType=INTEGER},
+            #{pProgress,jdbcType=INTEGER}, #{pStatus,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
+            #{paper,jdbcType=VARCHAR}, #{pTime,jdbcType=VARCHAR}, #{pAuthor,jdbcType=VARCHAR},
+            #{reason,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.project.bean.Paper">
+    insert into paper
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pName != null">
+        p_name,
+      </if>
+      <if test="stuNumber != null">
+        stu_number,
+      </if>
+      <if test="pProgress != null">
+        p_progress,
+      </if>
+      <if test="pStatus != null">
+        p_status,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="paper != null">
+        paper,
+      </if>
+      <if test="pTime != null">
+        p_time,
+      </if>
+      <if test="pAuthor != null">
+        p_author,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pName != null">
+        #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="stuNumber != null">
+        #{stuNumber,jdbcType=INTEGER},
+      </if>
+      <if test="pProgress != null">
+        #{pProgress,jdbcType=INTEGER},
+      </if>
+      <if test="pStatus != null">
+        #{pStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="paper != null">
+        #{paper,jdbcType=VARCHAR},
+      </if>
+      <if test="pTime != null">
+        #{pTime,jdbcType=VARCHAR},
+      </if>
+      <if test="pAuthor != null">
+        #{pAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.project.bean.PaperExample" resultType="java.lang.Long">
+    select count(*) from paper
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update paper
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.pName != null">
+        p_name = #{record.pName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuNumber != null">
+        stu_number = #{record.stuNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.pProgress != null">
+        p_progress = #{record.pProgress,jdbcType=INTEGER},
+      </if>
+      <if test="record.pStatus != null">
+        p_status = #{record.pStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paper != null">
+        paper = #{record.paper,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pTime != null">
+        p_time = #{record.pTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pAuthor != null">
+        p_author = #{record.pAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reason != null">
+        reason = #{record.reason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update paper
+    set id = #{record.id,jdbcType=INTEGER},
+    p_name = #{record.pName,jdbcType=VARCHAR},
+    stu_number = #{record.stuNumber,jdbcType=INTEGER},
+    p_progress = #{record.pProgress,jdbcType=INTEGER},
+    p_status = #{record.pStatus,jdbcType=VARCHAR},
+    content = #{record.content,jdbcType=VARCHAR},
+    paper = #{record.paper,jdbcType=VARCHAR},
+    p_time = #{record.pTime,jdbcType=VARCHAR},
+    p_author = #{record.pAuthor,jdbcType=VARCHAR},
+    reason = #{record.reason,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.project.bean.Paper">
+    update paper
+    <set>
+      <if test="pName != null">
+        p_name = #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="stuNumber != null">
+        stu_number = #{stuNumber,jdbcType=INTEGER},
+      </if>
+      <if test="pProgress != null">
+        p_progress = #{pProgress,jdbcType=INTEGER},
+      </if>
+      <if test="pStatus != null">
+        p_status = #{pStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="paper != null">
+        paper = #{paper,jdbcType=VARCHAR},
+      </if>
+      <if test="pTime != null">
+        p_time = #{pTime,jdbcType=VARCHAR},
+      </if>
+      <if test="pAuthor != null">
+        p_author = #{pAuthor,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.project.bean.Paper">
+    update paper
+    set p_name = #{pName,jdbcType=VARCHAR},
+        stu_number = #{stuNumber,jdbcType=INTEGER},
+        p_progress = #{pProgress,jdbcType=INTEGER},
+        p_status = #{pStatus,jdbcType=VARCHAR},
+        content = #{content,jdbcType=VARCHAR},
+        paper = #{paper,jdbcType=VARCHAR},
+        p_time = #{pTime,jdbcType=VARCHAR},
+        p_author = #{pAuthor,jdbcType=VARCHAR},
+        reason = #{reason,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

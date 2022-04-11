@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/check/message_board.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/check/purchase_list.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/check/user_center.jsp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/check/user_centerdefect.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/check/user_centerdeivce.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/check/user_centerenvi.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/check/user_centerprocedure.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/check/user_centerproduction.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/check/user_centerpurchase.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/check/user_centerquality.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/check/user_centersale.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/check/verify_login.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/index2.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/static/asset" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/static/css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/static/css/style.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/static/fonts" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/static/images" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/static/images/200g.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/static/images/400g.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/static/images/600g.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/static/js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/static/js/index.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/static/js/mine.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/static/js/script.js" charset="UTF-8" />
+  </component>
+</project>

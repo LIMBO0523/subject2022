@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.TASMapper">
+  <resultMap id="BaseResultMap" type="com.project.bean.TAS">
+    <id column="number" jdbcType="INTEGER" property="number" />
+    <result column="name" jdbcType="CHAR" property="name" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
+    <result column="grade" jdbcType="VARCHAR" property="grade" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="t_number" jdbcType="INTEGER" property="tNumber" />
+    <result column="p_date" jdbcType="VARCHAR" property="pDate" />
+    <result column="p_day" jdbcType="INTEGER" property="pDay" />
+    <result column="p_month" jdbcType="VARCHAR" property="pMonth" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    number, name, gender, grade, address, contact, email, birthday, t_number, p_date, 
+    p_day, p_month, password
+  </sql>
+  <select id="selectByExample" parameterType="com.project.bean.TASExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_a_s
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_a_s
+    where number = #{number,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_a_s
+    where number = #{number,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.project.bean.TASExample">
+    delete from t_a_s
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.project.bean.TAS">
+    insert into t_a_s (number, name, gender, 
+      grade, address, contact, 
+      email, birthday, t_number, 
+      p_date, p_day, p_month, 
+      password)
+    values (#{number,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{gender,jdbcType=CHAR}, 
+      #{grade,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{tNumber,jdbcType=INTEGER}, 
+      #{pDate,jdbcType=VARCHAR}, #{pDay,jdbcType=INTEGER}, #{pMonth,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.project.bean.TAS">
+    insert into t_a_s
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="number != null">
+        number,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="contact != null">
+        contact,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="tNumber != null">
+        t_number,
+      </if>
+      <if test="pDate != null">
+        p_date,
+      </if>
+      <if test="pDay != null">
+        p_day,
+      </if>
+      <if test="pMonth != null">
+        p_month,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="tNumber != null">
+        #{tNumber,jdbcType=INTEGER},
+      </if>
+      <if test="pDate != null">
+        #{pDate,jdbcType=VARCHAR},
+      </if>
+      <if test="pDay != null">
+        #{pDay,jdbcType=INTEGER},
+      </if>
+      <if test="pMonth != null">
+        #{pMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.project.bean.TASExample" resultType="java.lang.Long">
+    select count(*) from t_a_s
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_a_s
+    <set>
+      <if test="record.number != null">
+        number = #{record.number,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=CHAR},
+      </if>
+      <if test="record.gender != null">
+        gender = #{record.gender,jdbcType=CHAR},
+      </if>
+      <if test="record.grade != null">
+        grade = #{record.grade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contact != null">
+        contact = #{record.contact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null">
+        birthday = #{record.birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tNumber != null">
+        t_number = #{record.tNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.pDate != null">
+        p_date = #{record.pDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pDay != null">
+        p_day = #{record.pDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.pMonth != null">
+        p_month = #{record.pMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_a_s
+    set number = #{record.number,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=CHAR},
+      gender = #{record.gender,jdbcType=CHAR},
+      grade = #{record.grade,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      contact = #{record.contact,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=VARCHAR},
+      t_number = #{record.tNumber,jdbcType=INTEGER},
+      p_date = #{record.pDate,jdbcType=VARCHAR},
+      p_day = #{record.pDay,jdbcType=INTEGER},
+      p_month = #{record.pMonth,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.project.bean.TAS">
+    update t_a_s
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="tNumber != null">
+        t_number = #{tNumber,jdbcType=INTEGER},
+      </if>
+      <if test="pDate != null">
+        p_date = #{pDate,jdbcType=VARCHAR},
+      </if>
+      <if test="pDay != null">
+        p_day = #{pDay,jdbcType=INTEGER},
+      </if>
+      <if test="pMonth != null">
+        p_month = #{pMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where number = #{number,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.project.bean.TAS">
+    update t_a_s
+    set name = #{name,jdbcType=CHAR},
+      gender = #{gender,jdbcType=CHAR},
+      grade = #{grade,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      t_number = #{tNumber,jdbcType=INTEGER},
+      p_date = #{pDate,jdbcType=VARCHAR},
+      p_day = #{pDay,jdbcType=INTEGER},
+      p_month = #{pMonth,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR}
+    where number = #{number,jdbcType=INTEGER}
+  </update>
+</mapper>
