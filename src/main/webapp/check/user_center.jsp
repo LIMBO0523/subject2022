@@ -46,7 +46,7 @@
 				</li>
 				<li class="ripple">
 					<a class="tree-toggle nav-header">
-						<span class="glyphicon glyphicon-file"></span>文献学习
+						<span class="glyphicon glyphicon-file"></span>文献管理
 						<span class="fa-angle-right fa right-arrow text-right"></span>
 					</a>
 					<ul class="nav nav-list tree">
@@ -64,12 +64,11 @@
 				</li>
 				<li class="ripple">
 					<a class="tree-toggle nav-header">
-						<span class="glyphicon glyphicon-comment"></span>消息中心
+						<span class="glyphicon glyphicon-comment"></span>消息管理
 						<span class="fa-angle-right fa right-arrow text-right"></span>
 					</a>
 					<ul class="nav nav-list tree">
-						<li><a target="frame" href="check\message_list.jsp">已收信息</a></li>
-						<li><a target="frame" href="check\message_list2.jsp">已发信息</a></li>
+						<li><a target="frame" href="check\message_list.jsp">消息管理</a></li>
 					</ul>
 				</li>
 			</ul>
