@@ -163,11 +163,11 @@ public class TASController {
             session.setAttribute("user_id",tas.getName());
             session.setAttribute("user_number",tas.getNumber());
             if(tas.getNumber()>=3000)
-                modelAndView.setViewName("redirect:check/user_center.jsp");
+                modelAndView.setViewName("redirect:check/admin_index.jsp");
             else if (tas.getNumber()<2000)
-            modelAndView.setViewName("redirect:check/student_center.jsp");
+            modelAndView.setViewName("redirect:check/student_index.jsp");
             else if(tas.getNumber()>=2000&&tas.getNumber()<3000)
-                modelAndView.setViewName("redirect:check/teacher_center.jsp");
+                modelAndView.setViewName("redirect:check/teacher_index.jsp");
         }
         else
             modelAndView.setViewName("forward:/index.jsp?meg=账户或密码不对");
@@ -190,11 +190,11 @@ public class TASController {
                 session.setAttribute("user_id",tas.getName());
                 session.setAttribute("user_number",tas.getNumber());
                 if(tas.getNumber()>=3000)
-                    modelAndView.setViewName("redirect:check/user_center.jsp");
+                    modelAndView.setViewName("redirect:check/admin_index.jsp");
                 else if (tas.getNumber()<2000)
-                    modelAndView.setViewName("redirect:check/student_center.jsp");
+                    modelAndView.setViewName("redirect:check/student_index.jsp");
                 else
-                    modelAndView.setViewName("redirect:check/teacher_center.jsp");
+                    modelAndView.setViewName("redirect:check/teacher_index.jsp");
             }else {
                 modelAndView.setViewName("forward:/index.jsp?mesg=用户已经存在");
             }

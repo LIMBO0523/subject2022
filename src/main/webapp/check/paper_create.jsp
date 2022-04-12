@@ -1,11 +1,15 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html lang="zh">
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%@ include file="verify_login.jsp" %>
-<!DOCTYPE html>
-<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+    <title>学生首页</title>
     <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/animate.min.css"/>
@@ -18,117 +22,281 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Core CSS -->
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <!-- animation CSS -->
+    <link href="css/animate.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="css/colors/default.css" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
-<style>
-    .form-element {
-        font-size: 18px;
-        font-family: 黑体 ;
-    }
-    #p{
-        /*width:30px;*/
-        text-align: center;
-        font-size:24px;
-        font-family:楷体;
-    }
-</style>
-<body >
-    <div class="panel">
-        <div class="panel-body">
-            <div class="col-md-12">
-                <h3 class="animated fadeInLeft">新的文献</h3>
+
+<body class="fix-header">
+
+
+<!-- ============================================================== -->
+<!-- Preloader -->
+<!-- ============================================================== -->
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+    </svg>
+</div>
+<!-- ============================================================== -->
+<!-- Wrapper -->
+<!-- ============================================================== -->
+<div id="wrapper">
+    <!-- ============================================================== -->
+    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="TopNavigation"></div>
+    <!-- End Top Navigation -->
+    <!-- ============================================================== -->
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <div id="LeftSlidebar"></div>
+    <!-- ============================================================== -->
+    <!-- End Left Sidebar -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- Page Content -->
+    <!-- ============================================================== -->
+    <div id="page-wrapper" style="padding-bottom: 0">
+        <div class="container-fluid" style="padding: 0">
+            <div class="row bg-title">
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                    <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i class="ti-settings text-white"></i></button>
+                </div>
+                <!-- /.col-lg-12 -->
             </div>
-        </div>
-    </div>
-
-
-
-    <div class="form-element">
-        <div class="col-md-12 padding-0">
-            <div class="col-md-12">
-                <div class="panel form-element-padding">
-                    <div class="panel-heading">
-                    </div>
-                    <div class="panel-body" style="padding-bottom:30px;">
+            <div>
+                <style>
+                    .form-element {
+                        font-size: 18px;
+                        font-family: 黑体 ;
+                    }
+                    #p{
+                        /*width:30px;*/
+                        text-align: center;
+                        font-size:24px;
+                        font-family:楷体;
+                    }
+                </style>
+                <div class="panel">
+                    <div class="panel-body">
                         <div class="col-md-12">
-                            <form id="new_paper">
-                            <div class="form-group">
-
-                                <label class="col-sm-1 control-label text-right" style="width:130px;">文献名</label>
-                                <div class="col-sm-10" style="width:800px;">
-                                    <input name="pName" type="text"  class="form-control" placeholder="母猪的产后护理">
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label class="col-sm-1 control-label text-right" style="width:130px;">作者</label>
-                                <div class="col-sm-3" style="width:180px;">
-                                    <input name="pAuthor" id="pAuthor_add_input" type="text" class="form-control" placeholder="作者姓名">
-                                    <span class="help-block"></span>
-                                </div>
-
-
-                                <label class="col-sm-1 control-label text-right" style="width:130px;">日期</label>
-                                <div class="col-sm-3" style="width:180px;">
-                                    <input name="pTime" type="date" placeholder="例:19990523" class="form-control">
-                                </div>
-
-
-                                <label class="col-sm-1 control-label text-right" style="width:130px;">导师</label>
-                                <div class="col-sm-3" style="width:180px;">
-                                    <input name="tas.tNumber" type="text" placeholder="联系方式" class="form-control">
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label class="col-sm-1 control-label text-right" style="width:130px;">姓名</label>
-                                <div class="col-sm-3" style="width:180px;">
-                                    <input name="tas.name" id="stuName_add_input" type="text" placeholder="姓名" class="form-control">
-                                    <span class="help-block"></span>
-                                </div>
-
-                                <label class="col-sm-1 control-label text-right" style="width:130px;">学号</label>
-                                <div class="col-sm-3" style="width:180px;">
-                                    <input name="stuNumber" id="stuNumber_add_input" type="text" placeholder="例:1000" class="form-control">
-                                    <span class="help-block"></span>
-                                </div>
-
-                                <label class="col-sm-1 control-label text-right" style="width:130px;">年级</label>
-                                <div class="col-sm-3" style="width:180px;">
-<%--                                    <input name="tas.grade" type="text" placeholder="研一" class="form-control">--%>
-                                    <select class="form-control" name="tas.grade" id="my_grade" >
-                                        <option> </option>
-                                        <option>研一</option>
-                                        <option>研二</option>
-                                        <option>研三</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label text-right" style="width:130px;">学习理由</label>
-                                <div class="col-sm-3" style="width:800px;">
-                                    <textarea name="reason" type="text" placeholder="有用！" class="form-control"></textarea>
-                                </div>
-                            </div>
-                            </form>
+                            <h3 class="animated fadeInLeft">新的文献</h3>
                         </div>
                     </div>
                 </div>
+                <div class="form-element">
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-12">
+                            <div class="panel form-element-padding">
+                                <div class="panel-heading">
+                                </div>
+                                <div class="panel-body" style="padding-bottom:30px;">
+                                    <div class="col-md-12">
+                                        <form id="new_paper">
+                                            <div class="form-group">
 
-                <div class="col-md-12 text-center">
-                    <button class="btn btn-danger"  type="button"  id="save_paper_button" style="width:80px;">提交</button>
-                    <button class="btn btn-default" type="button"    style="width:80px;">返回</button>
+                                                <label class="col-sm-1 control-label text-right" style="width:130px;">文献名</label>
+                                                <div class="col-sm-10" style="width:800px;">
+                                                    <input name="pName" type="text"  class="form-control" placeholder="母猪的产后护理">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+
+                                                <label class="col-sm-1 control-label text-right" style="width:130px;">作者</label>
+                                                <div class="col-sm-3" style="width:180px;">
+                                                    <input name="pAuthor" id="pAuthor_add_input" type="text" class="form-control" placeholder="作者姓名">
+                                                    <span class="help-block"></span>
+                                                </div>
+
+
+                                                <label class="col-sm-1 control-label text-right" style="width:130px;">日期</label>
+                                                <div class="col-sm-3" style="width:180px;">
+                                                    <input name="pTime" type="date" placeholder="例:19990523" class="form-control">
+                                                </div>
+
+
+                                                <label class="col-sm-1 control-label text-right" style="width:130px;">导师</label>
+                                                <div class="col-sm-3" style="width:180px;">
+                                                    <input name="tas.tNumber" type="text" placeholder="联系方式" class="form-control">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+
+                                                <label class="col-sm-1 control-label text-right" style="width:130px;">姓名</label>
+                                                <div class="col-sm-3" style="width:180px;">
+                                                    <input name="tas.name" id="stuName_add_input" type="text" placeholder="姓名" class="form-control">
+                                                    <span class="help-block"></span>
+                                                </div>
+
+                                                <label class="col-sm-1 control-label text-right" style="width:130px;">学号</label>
+                                                <div class="col-sm-3" style="width:180px;">
+                                                    <input name="stuNumber" id="stuNumber_add_input" type="text" placeholder="例:1000" class="form-control">
+                                                    <span class="help-block"></span>
+                                                </div>
+
+                                                <label class="col-sm-1 control-label text-right" style="width:130px;">年级</label>
+                                                <div class="col-sm-3" style="width:180px;">
+                                                    <%--                                    <input name="tas.grade" type="text" placeholder="研一" class="form-control">--%>
+                                                    <select class="form-control" name="tas.grade" id="my_grade" >
+                                                        <option> </option>
+                                                        <option>研一</option>
+                                                        <option>研二</option>
+                                                        <option>研三</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label class="col-sm-1 control-label text-right" style="width:130px;">学习理由</label>
+                                                <div class="col-sm-3" style="width:800px;">
+                                                    <textarea name="reason" type="text" placeholder="有用！" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-danger"  type="button"  id="save_paper_button" style="width:80px;">提交</button>
+                                <button class="btn btn-default" type="button"    style="width:80px;">返回</button>
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
-
-
             </div>
+
+
+            <!-- ============================================================== -->
+            <!-- Right sidebar -->
+            <!-- ============================================================== -->
+            <!-- .right-sidebar -->
+            <div class="right-sidebar">
+                <div class="slimscrollright">
+                    <div class="rpanel-title">更换主题和颜色<span><i class="ti-close right-side-toggle"></i></span> </div>
+                    <div class="r-panel-body">
+                        <ul id="themecolors" class="m-t-20">
+                            <li><b>浅色</b></li>
+                            <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
+                            <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
+                            <li><a href="javascript:void(0)" data-theme="gray" class="yellow-theme">3</a></li>
+                            <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme">4</a></li>
+                            <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
+                            <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
+                            <li><b>深色</b></li>
+                            <br/>
+                            <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
+                            <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
+                            <li><a href="javascript:void(0)" data-theme="gray-dark" class="yellow-dark-theme">9</a></li>
+                            <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
+                            <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
+                            <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme working">12</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Right sidebar -->
+            <!-- ============================================================== -->
         </div>
+        <!-- /.container-fluid -->
+
     </div>
+    <!-- ============================================================== -->
+    <!-- End Page Content -->
+    <!-- ============================================================== -->
+</div>
+<!-- /#wrapper -->
+<!-- jQuery -->
+<script src="../plugins/bower_components/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $(window).paroller();
+
+
+        $("#LeftSlidebar").load("LeftSlidebarTeacher.jsp", function () {
+            <!-- Menu Plugin JavaScript -->
+            $.getScript("../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js",function () {
+                <!-- Custom Theme JavaScript -->
+                $.getScript("js/custom.min.js");
+
+                //获取各个项目的数量
+                /*                $.ajax({
+                                    type : "POST",
+                                    url : "/admin/getNeedCheck",
+                                    data : "",
+                                    dataType : "json",
+                                    contentType: "application/json",
+                                }).done(function (res) {
+                                    //左侧菜单栏数量
+                                    $("#totalneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts+res.data.wgxwjsgneedcheck.itemsCounts+res.data.wwgdtjyneedcheck.itemsCounts+res.data.zyqcneedcheck.itemsCounts);
+                                    $("#mlxysspneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts);
+                                    $("#wgxwjsgneedcheckspan").text(res.data.wgxwjsgneedcheck.itemsCounts);
+                                    $("#wwgdtjyneedcheckspan").text(res.data.wwgdtjyneedcheck.itemsCounts);
+                                    $("#zyqcneedcheckspan").text(res.data.zyqcneedcheck.itemsCounts);
+                                }).fail(function () {
+                                });*/
+
+
+            });//<!-- Menu Plugin JavaScript -->
+
+        });
+        $("#TopNavigation").load("TopNavigationStudent.jsp" , function () {
+
+
+
+            // $.ajax({
+            //     type : "GET",
+            //     url : "/admin/queryCurrentAdmin",
+            //     data : "",
+            //     dataType : "json",
+            //     contentType: "application/json",
+            // }).done(function (res) {
+            //     $("#adminname1").text(res.data.adminuser.name);
+            //     $("#adminname2").text(res.data.adminuser.name);
+            //     $("#adminusername").text(res.data.adminuser.username);
+            // }).fail(function () {
+            // });
+        });
+
+
+    });
+</script>
+<!-- Bootstrap Core JavaScript -->
+<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!--slimscroll JavaScript -->
+<script src="js/jquery.slimscroll.js"></script>
+<!--Wave Effects -->
+<script src="js/waves.js"></script>
+<!--Style Switcher -->
+<script src="../plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+
+<script src="paroller/jquery.paroller.min.js"></script>
+
 <script type="text/javascript">
     $("#save_paper_button").click(function (){
         if (!validate_add_form2()){
@@ -139,7 +307,7 @@
             type: "POST",
             data: $("#new_paper").serialize(),
             success: function (result){
-                window.location.href="paper_list.jsp"
+                window.location.href="paper_list_student.jsp"
             }
         })
     });
@@ -189,4 +357,5 @@
     }
 </script>
 </body>
+
 </html>

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/check/LeftSlidebarAdmin.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/check/message_board.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/check/purchase_list.jsp" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/check/user_center.jsp" charset="UTF-8" />
