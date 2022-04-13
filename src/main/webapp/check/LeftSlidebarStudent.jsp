@@ -26,15 +26,15 @@
 
             <li> <a href="curriculum_student.jsp" class="waves-effect"><i  class="mdi mdi-calendar-text fa-fw"></i> <span class="hide-menu">学生课表</span></a> </li>
 
-            <li> <a href="paper_list_student.jsp" class="waves-effect"><i class="mdi mdi-account-multiple fa-fw"></i> <span class="hide-menu">文献学习</span></a> </li>
+            <li> <a href="paper_list_student.jsp" class="waves-effect"><i class="glyphicon glyphicon-file fa-fw"></i> <span class="hide-menu">文献学习</span></a> </li>
 
-            <li> <a href="experiment_list_student.jsp" class="waves-effect"><i class="mdi mdi-creation fa-fw"></i> <span class="hide-menu">实验管理</span></a> </li>
+            <li> <a href="experiment_list_student.jsp" class="waves-effect"><i class="glyphicon glyphicon-asterisk fa-fw"></i> <span class="hide-menu">实验学习</span></a> </li>
 
             <li class="devider"></li>
 
-            <li> <a href="receive_list_student.jsp" class="waves-effect"><i class="mdi mdi-key-variant fa-fw"></i> <span class="hide-menu">已收信息</span></a> </li>
+            <li> <a href="receive_list_student.jsp" class="waves-effect"><i class="glyphicon glyphicon-chevron-down fa-fw"></i> <span class="hide-menu">已收信息</span></a> </li>
 
-            <li> <a href="send_list_student.jsp" class="waves-effect"><i class="mdi mdi-key-variant fa-fw"></i> <span class="hide-menu">已发信息</span></a> </li>
+            <li> <a href="send_list_student.jsp" class="waves-effect"><i class="glyphicon glyphicon-chevron-up fa-fw"></i> <span class="hide-menu">已发信息</span></a> </li>
 
             <li><a href="/mes/index.jsp" class="waves-effect"><i class="mdi mdi-logout fa-fw"></i> <span class="hide-menu">注销</span></a></li>
             <li class="devider"></li>

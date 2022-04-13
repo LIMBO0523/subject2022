@@ -351,14 +351,14 @@
             data:$("#UpdateForm").serialize(),
             success: function (result){
                 $("#my_information").modal("hide")
-                window.location.href="personal_center.jsp"
+                window.location.href="student_info.jsp"
             }
         })
     });
 
     //点击返回，返回到HELLO界面
     $("#back_btn").click(function (){
-        window.location.href="come.jsp"
+        window.location.href="student_index.jsp"
     })
 </script>
 </body>

@@ -81,108 +81,56 @@
             </div>
             <div>
                 <style>
-                    .form-element {
-                        font-size: 18px;
-                        font-family: 黑体 ;
-                    }
-                    #p{
-                        /*width:30px;*/
-                        text-align: center;
-                        font-size:24px;
-                        font-family:楷体;
+                    .header-label {
+                        font-size: 22px;
+                        font-family: verdana;
                     }
                 </style>
-                <div class="panel">
-                    <div class="panel-body">
-                        <div class="col-md-12">
-                            <h3 class="animated fadeInLeft">新的文献</h3>
+                <div class='container'>
+                    <div class="row">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <h3 class="animated fadeInLeft">实验过程记录</h3>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-element">
-                    <div class="col-md-12 padding-0">
-                        <div class="col-md-12">
-                            <div class="panel form-element-padding">
-                                <div class="panel-heading">
-                                </div>
-                                <div class="panel-body" style="padding-bottom:30px;">
-                                    <div class="col-md-12">
-                                        <form id="new_paper">
-                                            <div class="form-group">
-
-                                                <label class="col-sm-1 control-label text-right" style="width:130px;">文献名</label>
-                                                <div class="col-sm-10" style="width:800px;">
-                                                    <input name="pName" type="text"  class="form-control" placeholder="母猪的产后护理">
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group">
-
-                                                <label class="col-sm-1 control-label text-right" style="width:130px;">作者</label>
-                                                <div class="col-sm-3" style="width:180px;">
-                                                    <input name="pAuthor" id="pAuthor_add_input" type="text" class="form-control" placeholder="作者姓名">
-                                                    <span class="help-block"></span>
-                                                </div>
-
-
-                                                <label class="col-sm-1 control-label text-right" style="width:130px;">日期</label>
-                                                <div class="col-sm-3" style="width:180px;">
-                                                    <input name="pTime" type="date" placeholder="例:19990523" class="form-control">
-                                                </div>
-
-
-                                                <label class="col-sm-1 control-label text-right" style="width:130px;">导师</label>
-                                                <div class="col-sm-3" style="width:180px;">
-                                                    <input name="tas.tNumber" type="text" placeholder="联系方式" class="form-control">
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group">
-
-                                                <label class="col-sm-1 control-label text-right" style="width:130px;">姓名</label>
-                                                <div class="col-sm-3" style="width:180px;">
-                                                    <input name="tas.name" id="stuName_add_input" type="text" placeholder="姓名" class="form-control">
-                                                    <span class="help-block"></span>
-                                                </div>
-
-                                                <label class="col-sm-1 control-label text-right" style="width:130px;">学号</label>
-                                                <div class="col-sm-3" style="width:180px;">
-                                                    <input name="stuNumber" id="stuNumber_add_input" type="text" placeholder="例:1000" class="form-control">
-                                                    <span class="help-block"></span>
-                                                </div>
-
-                                                <label class="col-sm-1 control-label text-right" style="width:130px;">年级</label>
-                                                <div class="col-sm-3" style="width:180px;">
-                                                    <%--                                    <input name="tas.grade" type="text" placeholder="研一" class="form-control">--%>
-                                                    <select class="form-control" name="tas.grade" id="my_grade" >
-                                                        <option> </option>
-                                                        <option>研一</option>
-                                                        <option>研二</option>
-                                                        <option>研三</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group">
-                                                <label class="col-sm-1 control-label text-right" style="width:130px;">学习理由</label>
-                                                <div class="col-sm-3" style="width:800px;">
-                                                    <textarea name="reason" type="text" placeholder="有用！" class="form-control"></textarea>
-                                                </div>
-                                            </div>
-                                        </form>
+                    <div class='row'>
+                        <div id="mainContainer" class='col-md-10 ml-auto mr-auto' >
+                            <!-- Nav tabs -->
+                            <form>
+                                <ul id='navCompose' class="nav nav-tabs nav-tabs-justified ">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#blocMarkdown">Markdown</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link " data-toggle="tab" href="#blocHtml">HTML</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link " data-toggle="tab" href="#blocPreview">Preview</a>
+                                    </li>
+                                    <li class="ml-auto">
+                                        <%--				<button class="btn btn-success btn-sm"  id="btnCopyToClipboard" >复制</button>--%>
+                                        <button class="btn btn-success btn-sm"  id="btnUpdate">更新</button>
+                                    </li>
+                                </ul>
+                                <div style="height:4px;"></div>
+                                <div style="height:4px;"></div>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane container active" id="blocMarkdown">
+                                        <input name="id" hidden="hidden" id="id_input">
+                                        <textarea id="txtMarkdown" name="eStep" class='form-control' rows="20" cols="80">#写点什么吧！</textarea>
+                                    </div>
+                                    <div class="tab-pane container fade" id="blocHtml">
+                                        <textarea readonly id="txtHtml" class='form-control' rows="20" cols="80"></textarea>
+                                    </div>
+                                    <div class="tab-pane container fade" id="blocPreview">
+                                        <div id='divPreview'></div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col-md-12 text-center">
-                                <button class="btn btn-danger"  type="button"  id="save_paper_button" style="width:80px;">提交</button>
-                                <button class="btn btn-default" type="button"    style="width:80px;">返回</button>
-                            </div>
-
-
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -233,10 +181,6 @@
 <script src="../plugins/bower_components/jquery/dist/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
-
-        $(window).paroller();
-
-
         $("#LeftSlidebar").load("LeftSlidebarStudent.jsp", function () {
             <!-- Menu Plugin JavaScript -->
             $.getScript("../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js",function () {
@@ -294,68 +238,120 @@
 <script src="js/waves.js"></script>
 <!--Style Switcher -->
 <script src="../plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+<!-- wysuhtml5 Plugin JavaScript -->
+<script src="../plugins/bower_components/html5-editor/wysihtml5-0.3.0.js"></script>
+<script src="../plugins/bower_components/html5-editor/bootstrap-wysihtml5.js"></script>
+<!-- Form Wizard JavaScript -->
+<script src="../plugins/bower_components/jquery-wizard-master/dist/jquery-wizard.min.js"></script>
+<!-- Sweet-Alert  -->
+<script src="../plugins/bower_components/sweetalert/sweetalert.min.js"></script>
+<script src="../plugins/bower_components/sweetalert/jquery.sweet-alert.custom.js"></script>
 
-<script src="paroller/jquery.paroller.min.js"></script>
+<!--遮罩插件-->
+<script src="js/busy-load/dist/app.min.js"></script>
+
+
+<script src="/static/js/external/jquery-1.11.1.min.js"></script>
+<script src="/static/js/external/popper-1.16.0.min.js"></script>
+<script src="/static/js/external/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js"></script>
+
+<script>
+    function copyToClipboard (text) {
+        if (navigator.clipboard) { // default: modern asynchronous API
+            return navigator.clipboard.writeText(text);
+        } else if (window.clipboardData && window.clipboardData.setData) {     // for IE11
+            window.clipboardData.setData('Text', text);
+            return Promise.resolve();
+        } else {
+            // workaround: create dummy input
+            const input = h('input', { type: 'text' });
+            input.value = text;
+            document.body.append(input);
+            input.focus();
+            input.select();
+            document.execCommand('copy');
+            input.remove();
+            return Promise.resolve();
+        }
+    }
+
+    window.addEventListener("DOMContentLoaded", function(){
+        var converter = new Markdown.Converter();
+
+        $("#btnCopyToClipboard").click(function(){
+            var txt = $("#navCompose .nav-link.active").text();
+            switch(txt) {
+                case "Markdown":
+                    copyToClipboard($("#txtMarkdown").text());
+                    alert("Markdown text copied to clipboard.");
+                    break;
+                case "HTML":
+                    copyToClipboard($("#txtHtml").text());
+                    alert("HTML code copied to clipboard.");
+                    break;
+                case "Preview":
+                    copyToClipboard($("#divPreview").html());
+                    alert("HTML code copied to clipboard.");
+                    break;
+            }
+        });
+
+        $("#navCompose .nav-link").click(function(){
+            console.log("clicked!");
+            var txt = $(this).text();
+            //console.log('txt:', txt);
+            if (txt == 'HTML') {
+                //console.log('now converting:', txt);
+                var html = converter.makeHtml($("#txtMarkdown").val());
+                $("#txtHtml").text(html);
+            }
+            else if (txt == "Preview") {
+                var html = converter.makeHtml($("#txtMarkdown").val());
+                $("#divPreview").html(html);
+            }
+        });
+    });
+
+</script>
 
 <script type="text/javascript">
-    $("#save_paper_button").click(function (){
-        if (!validate_add_form2()){
-            return false;
+    var url = location.search; //获取url中"?"符后的字串
+    url=url.split("&")
+    var id=url[0].substring(4,url[0].length);
+    $(function () {
+        GetContent();
+        var user_id="<%=session.getAttribute("user_number")%>";
+        if (user_id>=2000){
+            $("#txtMarkdown").attr("disabled","true")
         }
+    })
+    function GetContent() {
         $.ajax({
-            url: 'http://localhost:8080/mes/paper',
-            type: "POST",
-            data: $("#new_paper").serialize(),
+            url:"http://localhost:8080/mes/exp/"+id,
+            type: "get",
             success: function (result){
-                window.location.href="paper_list_student.jsp"
+                var exp=result.extend.exp;
+                // alert(paper.content)
+                $("#txtMarkdown").val(exp.eStep);
+                $("#id_input").val(exp.id);
             }
         })
-    });
-    function validate_add_form2(){
-        //拿到要校验的数据，使用正则表达式
-        var Author=$("#pAuthor_add_input").val();
-        var regAuthor=/(^[a-zA-Z0-9_-]{3-16}$)|(^[\u2E80-\u9FFF]{2,6})/;
-        if(!regAuthor.test(Author)){
-            // alert("用户名可以是2-6位中文或3-16位英文和数字的组合");
-            show_validate_msg("#pAuthor_add_input","error","作者可以是2-6位中文或3-16位英文和数字的组合")
-            return false;
-        }else{
-            show_validate_msg("#pAuthor_add_input","success","");
-        }
-
-        var stuName=$("#stuName_add_input").val();
-        var regName=/(^[a-zA-Z0-9_-]{3-16}$)|(^[\u2E80-\u9FFF]{2,6})/;
-        if(!regName.test(stuName)){
-            // alert("用户名可以是2-6位中文或3-16位英文和数字的组合");
-            show_validate_msg("#stuName_add_input","error","可以是2-6位中文或3-16位英文和数字的组合")
-            return false;
-        }else{
-            show_validate_msg("#stuName_add_input","success","");
-        }
-
-        var stuNumber=$("#stuNumber_add_input").val();
-        var regNumber=/^\d{4}$/
-        if (!regNumber.test(stuNumber)){
-            show_validate_msg("#stuNumber_add_input","error","必须是4位数字，导师为2xxx，学生为1xxx")
-            return false;
-        }else {
-            show_validate_msg("#stuNumber_add_input","success","");
-        }
-        return true
     }
-    function show_validate_msg(ele,status,msg){
-        //清楚当前元素的校验状态
-        $(ele).parent().removeClass("has-error has-success");
-        $(ele).next("span").text("");
-        if ("success"==status){
-            $(ele).parent().addClass("has-success");
-            $(ele).next("span").text("")
-        }else if ("error"==status){
-            $(ele).parent().addClass("has-error");
-            $(ele).next("span").text(msg);
-        }
-    }
+    $("#btnUpdate").click(function (){
+        //发送ajax请求保存更新的学生信息
+        $.ajax({
+            url: "http://localhost:8080/mes/exp/"+id,
+            type:"PUT",
+            data:$("#mainContainer form").serialize(),
+            success: function (result){
+                GetContent();
+                alert("更新成功")
+            }
+        })
+
+    })
 </script>
-</body>
 
+</body>
 </html>

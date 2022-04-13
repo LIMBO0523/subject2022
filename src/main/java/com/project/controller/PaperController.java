@@ -84,6 +84,7 @@ public class PaperController {
     public Msg getPaperWithJson(@RequestParam(value = "pn",defaultValue = "1") Integer pn
             ,@RequestParam(value = "paperName")String paperName
             ,@RequestParam(value = "paperStatus")String paperStatus
+            ,@RequestParam(value = "paperKeyWord")String paperKeyWord
             , HttpServletRequest req){
         PageHelper.startPage(pn,5);
         HttpSession session = req.getSession();
@@ -93,9 +94,9 @@ public class PaperController {
             paperStatus="undefined";
         }
         if (Integer.parseInt(number)>=3000||Integer.parseInt(number)<2000)
-            papers = paperService.getAllPaper(Integer.parseInt(number),paperName,paperStatus);
+            papers = paperService.getAllPaper(Integer.parseInt(number),paperName,paperStatus,paperKeyWord);
         else
-            papers=paperService.getAllPaperbyStuNumber(Integer.parseInt(number),paperName,paperStatus);
+            papers=paperService.getAllPaperbyStuNumber(Integer.parseInt(number),paperName,paperStatus,paperKeyWord);
 
         PageInfo page=new PageInfo(papers,5);
         return Msg.success().add("page",page);

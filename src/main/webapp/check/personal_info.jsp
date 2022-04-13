@@ -368,7 +368,7 @@
             data:$("#UpdateForm").serialize(),
             success: function (result){
                 $("#my_information").modal("hide")
-                window.location.href="personal_center.jsp"
+                window.location.href="personal_info.jsp"
             }
         })
     });

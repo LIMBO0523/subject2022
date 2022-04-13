@@ -251,7 +251,7 @@
         $(window).paroller();
 
 
-        $("#LeftSlidebar").load("LeftSlidebarTeacher.jsp", function () {
+        $("#LeftSlidebar").load("LeftSlidebarStudent.jsp", function () {
             <!-- Menu Plugin JavaScript -->
             $.getScript("../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js",function () {
                 <!-- Custom Theme JavaScript -->

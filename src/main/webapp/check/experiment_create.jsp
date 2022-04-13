@@ -244,7 +244,7 @@
         $(window).paroller();
 
 
-        $("#LeftSlidebar").load("LeftSlidebarStudent.jsp", function () {
+        $("#LeftSlidebar").load("LeftSlidebarTeacher.jsp", function () {
             <!-- Menu Plugin JavaScript -->
             $.getScript("../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js",function () {
                 <!-- Custom Theme JavaScript -->
@@ -314,7 +314,7 @@
             type: "POST",
             data: $("#new_experiment").serialize(),
             success: function (result){
-                window.location.href="experiment_list_student.jsp"
+                window.location.href="experiment_list_teacher.jsp"
             }
         })
     });

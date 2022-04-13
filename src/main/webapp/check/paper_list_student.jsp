@@ -197,15 +197,18 @@
                             <form class="form-inline">
                                 <div class="row form-group">
                                     <input type="text" class="form-control " id="search" placeholder="输入文献名进行搜索">
+                                    <input type="text" class="form-control " id="search1" placeholder="输入关键字进行搜索">
                                     <button type="button" class="btn btn-info " id="paper_search_modal_button">
                                         <span class="glyphicon glyphicon-search"></span> 搜索
                                     </button>
-                                    <select class="form-control" name="status" id="status_search_input">
+                                    <div hidden="hidden">
+                                        <select hidden="hidden" class="form-control" name="status" id="status_search_input">
                                         <option> </option>
                                         <option>审核中</option>
                                         <option>未完成</option>
                                         <option>完成</option>
-                                    </select>
+                                        </select>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -361,6 +364,7 @@
     var currentPage
     var paperName
     var paperStatus
+    var paperKeyWord
     $(function (){
         to_page(1);
     });
@@ -368,7 +372,7 @@
     function to_page(pn){
         $.ajax({
             url:"http://localhost:8080/mes/paper",
-            data:"pn="+pn+"&paperName="+paperName+"&paperStatus="+paperStatus,
+            data:"pn="+pn+"&paperName="+paperName+"&paperStatus="+paperStatus+"&paperKeyWord="+paperKeyWord,
             type:"get",
             success:function (result){
                 // console.log(result);
@@ -467,7 +471,7 @@
     //点击内容按钮进行内容更新
     $(document).on("click",".check_btn",function (){
         var id=$(this).attr("check-id")
-        window.location.href="paper_Info.jsp?id="+id
+        window.location.href="paper_Info_student.jsp?id="+id
         // var id=$(this).attr("check-id")
     })
     //点击编辑按钮，弹出模态框
@@ -550,6 +554,7 @@
     })
     $("#paper_search_modal_button").click(function () {
         paperName=$("#search").val();
+        paperKeyWord=$("#search1").val();
         to_page(1);
     })
     $("#status_search_input").change(function () {

@@ -177,7 +177,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-4 col-md-offset-8">
+                        <div class="col-md-4 col-md-offset-8" hidden="hidden">
                             <button class="btn btn-primary" id="new_experiment_btn">新增</button>
                             <button class="btn btn-danger" id="delete_experiment_btn">删除</button>
                         </div>
@@ -542,7 +542,7 @@
     //点击内容按钮进行内容更新
     $(document).on("click",".check_btn",function (){
         var id=$(this).attr("check-id")
-        window.location.href="experiment_Info.jsp?id="+id
+        window.location.href="experiment_Info_student.jsp?id="+id
         // var id=$(this).attr("check-id")
     })
 </script>

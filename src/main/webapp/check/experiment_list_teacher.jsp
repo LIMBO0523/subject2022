@@ -542,7 +542,7 @@
     //点击内容按钮进行内容更新
     $(document).on("click",".check_btn",function (){
         var id=$(this).attr("check-id")
-        window.location.href="experiment_Info.jsp?id="+id
+        window.location.href="experiment_Info_teacher.jsp?id="+id
         // var id=$(this).attr("check-id")
     })
 </script>

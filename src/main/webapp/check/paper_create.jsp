@@ -264,7 +264,7 @@
             });//<!-- Menu Plugin JavaScript -->
 
         });
-        $("#TopNavigation").load("TopNavigationStudent.jsp" , function () {
+        $("#TopNavigation").load("TopNavigationTeacher.jsp" , function () {
 
 
 
@@ -307,7 +307,7 @@
             type: "POST",
             data: $("#new_paper").serialize(),
             success: function (result){
-                window.location.href="paper_list_student.jsp"
+                window.location.href="paper_list_teacher.jsp"
             }
         })
     });

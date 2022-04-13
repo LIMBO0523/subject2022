@@ -345,14 +345,14 @@
             data:$("#UpdateForm").serialize(),
             success: function (result){
                 $("#my_information").modal("hide")
-                window.location.href="personal_center.jsp"
+                window.location.href="teacher_info.jsp"
             }
         })
     });
 
     //点击返回，返回到HELLO界面
     $("#back_btn").click(function (){
-        window.location.href="come.jsp"
+        window.location.href="teacher_index.jsp"
     })
 </script>
 </body>

@@ -43,7 +43,7 @@ public class PaperService {
     /**
      * 查询所有论文学习情况
      */
-    public List<Paper> getAllPaper(Integer number,String paperName,String paperStatus){
+    public List<Paper> getAllPaper(Integer number,String paperName,String paperStatus,String paperKeyWord){
         PaperExample paperExample = new PaperExample();
         PaperExample.Criteria criteria=paperExample.createCriteria();
         criteria.andStuNumberEqualTo(number);
@@ -58,6 +58,10 @@ public class PaperService {
             criteria.andPStatusEqualTo(paperStatus);
             criteria1.andPStatusEqualTo(paperStatus);
         }
+        if (!"undefined".equals(paperKeyWord)){
+            criteria.andPaperLike("%"+paperKeyWord+"%");
+            criteria1.andPaperLike("%"+paperKeyWord+"%");
+        }
         if (number>=3000)
             return paperMapper.selectByExampleWithStu(paperExample1);
         else if (number<2000)
@@ -68,7 +72,7 @@ public class PaperService {
     /**
      * 根据学生的学号，查询所有论文
      */
-    public List<Paper> getAllPaperbyStuNumber(Integer number,String paperName,String paperStatus){
+    public List<Paper> getAllPaperbyStuNumber(Integer number,String paperName,String paperStatus,String paperKeyWord){
         TASExample tasExample=new TASExample();
         TASExample.Criteria criteria=tasExample.createCriteria();
         criteria.andTNumberEqualTo(number);
@@ -84,6 +88,9 @@ public class PaperService {
             criteria1.andPNameLike("%"+paperName+"%");
         if (!"undefined".equals(paperStatus))
             criteria1.andPStatusEqualTo(paperStatus);
+        if (!"undefined".equals(paperKeyWord)){
+            criteria1.andPaperLike("%"+paperKeyWord+"%");
+        }
         return paperMapper.selectByExampleWithStu(paperExample);
     }
 
