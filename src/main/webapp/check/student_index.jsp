@@ -69,7 +69,7 @@
             <div>
                 <div style="background: url('paroller/student.jpg') center no-repeat;background-size: cover; height: 700px;position:relative;" data-paroller-factor="0.5">
                     <div style="   width:600px;  height:100px;  position:absolute;  left:50%;  top:50%;  margin:-150px 0 0 -200px;color:#ffffff;font-size: 4em;font-weight: bold">
-                        从这里书写周报
+                        从这里书写一周的开始
                     </div>
                     <div style="   width:600px;  height:100px;  position:absolute;  left:50%;  top:50%;  margin:-50px 0 0 -200px;color:#ffffff;font-size: 2em;font-weight: lighter">
                         激扬文字
@@ -77,7 +77,7 @@
                 </div>
                 <div style="background: url('paroller/desk.jpg') center no-repeat;background-size: cover; height: 700px;position:relative;" data-paroller-factor="0.5">
                     <div style="   width:600px;  height:100px;  position:absolute;  left:50%;  top:50%;  margin:-150px 0 0 -300px;color:#111111;font-size: 4em;font-weight: bold">
-                        翻阅同门周报
+                        学习文献提升自己
                     </div>
                     <div style="   width:600px;  height:100px;  position:absolute;  left:50%;  top:50%;  margin:-50px 0 0 -300px;color:#111111;font-size: 2em;font-weight: lighter">
                         谁主沉浮？
@@ -85,7 +85,7 @@
                 </div>
                 <div style="background: url('paroller/tools.jpg') center no-repeat;background-size: cover; height: 700px;position:relative;" data-paroller-factor="0.5">
                     <div style="   width:600px;  height:100px;  position:absolute;  left:50%;  top:50%;  margin:50px 0 0 -200px;color:#ffffff;font-size: 4em;font-weight: bold">
-                        随时，随处
+                        进行实验获取知识
                     </div>
                     <div style="   width:600px;  height:100px;  position:absolute;  left:50%;  top:50%;  margin:150px 0 0 -200px;color:#ffffff;font-size: 2em;font-weight: lighter">
                         时时处处
@@ -93,7 +93,7 @@
                 </div>
                 <div style="background: url('paroller/boy.jpg') center no-repeat;background-size: cover; height: 700px;position:relative;" data-paroller-factor="0.5">
                     <div style="   width:600px;  height:100px;  position:absolute;  left:50%;  top:50%;  margin:-150px 0 0 -100px;color:#444444;font-size: 4em;font-weight: bold">
-                        确认过眼神
+                        分享一周成果
                     </div>
                     <div style="   width:600px;  height:100px;  position:absolute;  left:50%;  top:50%;  margin:-50px 0 0 -100px;color:#444444;font-size: 2em;font-weight: lighter">
                         是最优秀的你

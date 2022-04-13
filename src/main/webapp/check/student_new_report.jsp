@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -75,6 +74,35 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+            <div id = "taskmodal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="insertmyLargeModalLabel"><span >本周完成多少目标？</span></h4> </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="control-label">学号</label>
+                                <input type="text" class="form-control" name="stuNumber" id="stuNumber">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">完成目标数</label>
+                                <input type="email" class="form-control" name="taskNumber" id="taskNumber">
+                            </div>
+                            <button class="btn btn-success waves-effect waves-light" type="button" id="submint_button">
+                                    <span class="btn-label">
+                                        <i class="fa fa-check"></i>
+                                    </span>提交
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
             <div class="row">
                 <div class="col-md-12">
 
@@ -92,7 +120,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="white-box">
-                                            <form>
+                                            <form method="post">
                                                 <div class="form-group">
                                                     <textarea id="edit1" class="textarea_editor form-control" rows="15" placeholder="Enter text ..."></textarea>
                                                 </div>
@@ -196,7 +224,7 @@
 <script src="../plugins/bower_components/jquery/dist/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
-        $("#LeftSlidebar").load("LeftSlidebarStudent.html", function () {
+        $("#LeftSlidebar").load("LeftSlidebarStudent.jsp", function () {
             <!-- Menu Plugin JavaScript -->
             $.getScript("../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js",function () {
                 <!-- Custom Theme JavaScript -->
@@ -223,7 +251,7 @@
             });//<!-- Menu Plugin JavaScript -->
 
         });
-        $("#TopNavigation").load("TopNavigationStudent.html" , function () {
+        $("#TopNavigation").load("TopNavigationStudent.jsp" , function () {
 
 
 
@@ -267,6 +295,7 @@
 </body>
 <script type="text/javascript">
 
+    var taskNumber;
     $(document).ready(function () {
 
 
@@ -296,36 +325,35 @@
                         spinner: "cube-grid"
                     });
 
+                    var stuNumber=<%=session.getAttribute("user_number")%>
+                    var thisWeek=$("#edit1").val()
+                    var stuProblem=$("#edit2").val()
+                    var nextWeek=$("#edit3").val()
                     //发送请求
                     $.ajax({
                         type: "POST",
-                        url: "/report/addReport.action",
-                        dataType: "json",
-                        contentType: "application/json",
-                        data: JSON.stringify({
-                            thisWeek: $("#edit1").val(),
-                            bugMeet: $("#edit2").val(),
-                            nextWeek: $("#edit3").val()
-                        })
+                        url: "http://localhost:8080/mes/report",
+                        data:"stuNumber="+stuNumber+"&thisWeek="+thisWeek+"&stuProblem="+stuProblem+
+                            "&nextWeek="+nextWeek+"&taskNumber="+taskNumber,
                     }).always(function () {
                         //隐藏加载中遮罩
                         $("#page-wrapper").busyLoad("hide");
 
-                    }).done(function (response) {
+                    }).done(function (result) {
 
-                        if (undefined === response.code) {
+                        if (100 === result.code) {
                             swal({
                                 title: "提交成功",
-                                text: response.message,
+                                text: result.msg,
                                 type: "success",
                                 timer: 1000,
                             })
-                            window.location.assign("student_history_report.html")
+                            window.location.assign("report_student.jsp")
                         }
                         else {
                             swal({
                                 title: "提交失败",
-                                text: response.message,
+                                text: result.msg,
                                 type: "error",
                                 timer: 1000,
                                 showConfirmButton: false
@@ -343,8 +371,12 @@
                 }
             });
         })();
-
-
+        $("#taskmodal").modal();
+    })
+    $("#submint_button").click(function (){
+        taskNumber=$("#taskNumber").val()
+        //隐藏加载中遮罩
+        $("#taskmodal").modal("hide");
     })
 </script>
 <script>

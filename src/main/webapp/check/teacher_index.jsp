@@ -80,7 +80,7 @@
                         确认过眼神
                     </div>
                     <div style="   width:600px;  height:100px;  position:absolute;  left:50%;  top:50%;  margin:-50px 0 0 -300px;color:#111111;font-size: 2em;font-weight: lighter">
-                        分享最优秀的周报
+                        分享最优秀的学生
                     </div>
                 </div>
                 <div style="background: url('paroller/tools.jpg') center no-repeat;background-size: cover; height: 700px;position:relative;" data-paroller-factor="0.5">

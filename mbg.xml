@@ -43,6 +43,7 @@
         <table tableName="megs" domainObjectName="Megs" ></table>
         <table tableName="experiment" domainObjectName="Experiment" ></table>
         <table tableName="curriculum" domainObjectName="Curriculum" ></table>
+        <table tableName="reports" domainObjectName="Reports" ></table>
 
 
     </context>

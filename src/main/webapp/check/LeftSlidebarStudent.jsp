@@ -26,6 +26,8 @@
 
             <li> <a href="curriculum_student.jsp" class="waves-effect"><i  class="mdi mdi-calendar-text fa-fw"></i> <span class="hide-menu">学生课表</span></a> </li>
 
+            <li> <a href="report_student.jsp" class="waves-effect"><i  class="mdi mdi-calendar-text fa-fw"></i> <span class="hide-menu">我的周报</span></a> </li>
+
             <li> <a href="paper_list_student.jsp" class="waves-effect"><i class="glyphicon glyphicon-file fa-fw"></i> <span class="hide-menu">文献学习</span></a> </li>
 
             <li> <a href="experiment_list_student.jsp" class="waves-effect"><i class="glyphicon glyphicon-asterisk fa-fw"></i> <span class="hide-menu">实验学习</span></a> </li>

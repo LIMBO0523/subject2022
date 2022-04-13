@@ -14,14 +14,6 @@
     <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/animate.min.css"/>
     <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/style.css" >
-    <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
@@ -32,6 +24,10 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- color CSS -->
     <link href="css/colors/default.css" id="theme" rel="stylesheet">
+    <!--遮罩-->
+    <link href="css/busy-load/dist/app.min.css" rel="stylesheet">
+    <!--alerts CSS -->
+    <link href="../plugins/bower_components/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -333,7 +329,7 @@
 <script>
     $(document).ready(function () {
 
-        $(window).paroller();
+        // $(window).paroller();
 
 
         $("#LeftSlidebar").load("LeftSlidebarAdmin.jsp", function () {
@@ -393,8 +389,11 @@
 <script src="js/waves.js"></script>
 <!--Style Switcher -->
 <script src="../plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
-
-<script src="paroller/jquery.paroller.min.js"></script>
+<!-- Sweet-Alert  -->
+<script src="../plugins/bower_components/sweetalert/sweetalert.min.js"></script>
+<script src="../plugins/bower_components/sweetalert/jquery.sweet-alert.custom.js"></script>
+<!--遮罩插件-->
+<script src="js/busy-load/dist/app.min.js"></script>
 
 <script type="text/javascript">
     var currentPage;
@@ -434,14 +433,14 @@
             var stuEmailTd=$("<td></td>").append(item.email);
             var stuContactTd=$("<td></td>").append(item.contact);
             var editBtn=$("<button></button>").addClass("btn btn-primary btn-sm edit_btn")
-                .append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append("编辑");
+                .append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append("编辑老师");
             //为编辑按钮添加一个自定义的属性
             editBtn.attr("edit-id" ,item.number);
             var checkBtn=$("<button></button>").addClass("btn btn-info btn-sm check_btn")
-                .append($("<span></span>").addClass("glyphicon glyphicon-search")).append("查看");
+                .append($("<span></span>").addClass("glyphicon glyphicon-search")).append("重置密码");
             checkBtn.attr("check-id",item.number);
             var deleteBtn=$("<button></button>").addClass("btn btn-danger btn-sm delete_btn")
-                .append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("删除");
+                .append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("删除老师");
             deleteBtn.attr("delete-id",item.number);
             var btnTd=$("<td></td>").append(editBtn).append(" ").append(checkBtn).append(" ").append(deleteBtn);
             $("<tr></tr>").append(checkBoxTd).append(stuIdTd).append(stuNnameTd)
@@ -609,6 +608,27 @@
         })
     });
 
+    //点击重置按钮，重置密码
+    $(document).on("click",".check_btn",function (){
+        //发送ajax请求保存更新的学生信息
+        $.ajax({
+            url: "http://localhost:8080/mes/stu/"+$(this).attr("check-id"),
+            type:"PUT",
+            data:"password=123&number="+$(this).attr("check-id"),
+            success: function (result){
+                swal({
+                    title: "确定重置密码吗?",
+                    text: "重置后的默认密码为:123",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "重置",
+                    cancelButtonText:"取消",
+                    closeOnConfirm: false
+                })
+            }
+        })
+    })
     //点击编辑按钮，弹出模态框
     $(document).on("click",".edit_btn",function (){
         //查出学生信息
