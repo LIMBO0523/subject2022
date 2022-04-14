@@ -47,7 +47,6 @@ public class ExperimentService {
 
     /**
      * 获得所有学生的实验信息
-     * @return
      */
     public List<Experiment> getAllExperiment(Integer number,String expName,String expStatus){
         ExperimentExample example=new ExperimentExample();
@@ -102,5 +101,12 @@ public class ExperimentService {
 
     public void deleteExperimentbyId(Integer id) {
         experimentMapper.deleteByPrimaryKey(id);
+    }
+
+    public List<Experiment> getAllExperimentByNumber(Integer number) {
+        ExperimentExample example=new ExperimentExample();
+        ExperimentExample.Criteria criteria= example.createCriteria();
+        criteria.andStuNumberEqualTo(number);
+        return experimentMapper.selectByExampleWithStu(example);
     }
 }

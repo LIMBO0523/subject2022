@@ -113,19 +113,26 @@
                                 <div class="panel-body" style="padding-bottom:30px;">
                                     <div class="col-md-12">
                                         <form id="UpdateForm">
-                                            <div class="form-group">
-
-                                                <label class="col-sm-1 control-label text-right" style="width:130px;">姓名</label>
-                                                <div class="col-sm-11" style="width:800px;" >
-                                                    <input name="name" type="text" readonly="readonly" class="form-control" id="my_name">
-                                                </div>
+                                            <div>
+<%--                                                <div class="col-sm-12"  >--%>
+<%--                                                    <img src="../plugins/images/users/varun.jpg" >--%>
+<%--                                                </div>--%>
                                             </div>
 
 
                                             <div class="form-group">
+                                                <label class="col-sm-1 control-label text-right" style="width:130px;">姓名</label>
+                                                <div class="col-sm-4" style="width:180px;" >
+                                                    <input name="name" type="text"  class="form-control" id="my_name">
+                                                </div>
+
+                                                <label class="col-sm-1 control-label text-right" style="width:130px;">学号</label>
+                                                <div class="col-sm-4" style="width:180px;">
+                                                    <input name="number" type="text" readonly="readonly" placeholder="110" class="form-control" id="my_number">
+                                                </div>
 
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">性别</label>
-                                                <div class="col-sm-3" style="width:180px;">
+                                                <div class="col-sm-4" style="width:180px;">
                                                     <select class="form-control" name="gender" id="my_gender">
                                                         <option>男</option>
                                                         <option>女</option>
@@ -133,14 +140,22 @@
                                                 </div>
 
 
-                                                <label class="col-sm-1 control-label text-right" style="width:130px;">学号</label>
-                                                <div class="col-sm-3" style="width:180px;">
-                                                    <input name="number" type="text" readonly="readonly" placeholder="110" class="form-control" id="my_number">
-                                                </div>
+<%--                                                <label class="col-sm-1 control-label text-right" style="width:130px;">年级</label>--%>
+<%--                                                <div class="col-sm-3" style="width:180px;">--%>
+<%--                                                    <select class="form-control" name="grade" id="my_grade" >--%>
+<%--                                                        <option> </option>--%>
+<%--                                                        <option>研一</option>--%>
+<%--                                                        <option>研二</option>--%>
+<%--                                                        <option>研三</option>--%>
+<%--                                                    </select>--%>
+<%--                                                </div>--%>
+                                            </div>
 
+
+                                            <div class="form-group">
 
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">年级</label>
-                                                <div class="col-sm-3" style="width:180px;">
+                                                <div class="col-sm-4" style="width:180px;">
                                                     <select class="form-control" name="grade" id="my_grade" >
                                                         <option> </option>
                                                         <option>研一</option>
@@ -148,18 +163,14 @@
                                                         <option>研三</option>
                                                     </select>
                                                 </div>
-                                            </div>
-
-
-                                            <div class="form-group">
 
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">家庭住址</label>
-                                                <div class="col-sm-3" style="width:180px;">
+                                                <div class="col-sm-4" style="width:180px;">
                                                     <input name="address" type="text" placeholder="例：08:30" class="form-control" id="my_address">
                                                 </div>
 
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">联系方式</label>
-                                                <div class="col-sm-3" style="width:180px;">
+                                                <div class="col-sm-4" style="width:180px;">
                                                     <input name="contact" type="text" placeholder="例：12:35" class="form-control" id="my_contact">
                                                 </div>
                                             </div>
@@ -168,16 +179,16 @@
                                             <div class="form-group">
 
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">邮箱</label>
-                                                <div class="col-sm-3" style="width:180px;">
+                                                <div class="col-sm-4" style="width:180px;">
                                                     <input name="email" type="text" placeholder="例：2100" class="form-control" id="my_email">
                                                 </div>
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">生日</label>
-                                                <div class="col-sm-3" style="width:180px;">
+                                                <div class="col-sm-4" style="width:180px;">
                                                     <input name="birthday" type="text" placeholder="例：1600" class="form-control" id="my_birthday">
                                                 </div>
 
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">导师工号</label>
-                                                <div class="col-sm-3" style="width:180px;">
+                                                <div class="col-sm-4" style="width:180px;">
                                                     <input name="tNumber" type="text"  class="form-control" id="my_tNumber">
                                                 </div>
 

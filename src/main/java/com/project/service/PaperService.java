@@ -104,4 +104,11 @@ public class PaperService {
     public void deletePaperbyId(Integer id) {
         paperMapper.deleteByPrimaryKey(id);
     }
+
+    public List<Paper> getAllMyPaper(int id) {
+        PaperExample paperExample=new PaperExample();
+        PaperExample.Criteria criteria=paperExample.createCriteria();
+        criteria.andStuNumberEqualTo(id);
+        return paperMapper.selectByExampleWithStu(paperExample);
+    }
 }

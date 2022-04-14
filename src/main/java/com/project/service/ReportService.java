@@ -65,4 +65,21 @@ public class ReportService {
     public void updateReport(Reports reports) {
         reportsMapper.updateByPrimaryKeySelective(reports);
     }
+
+    public List<Reports> getExcellentReport(Integer MyNumber) {
+        ReportsExample example=new ReportsExample();
+        ReportsExample.Criteria criteria=example.createCriteria();
+        criteria.andTaskNumberGreaterThan(5);
+        List<Reports> reports = reportsMapper.selectByExample(example);
+        List<Reports> excellentReport=new ArrayList<>();
+        for (int i=2;i<reports.size();i++){
+            Integer stuNumber = reports.get(i).getStuNumber();
+            TAS tas = tasMapper.selectByPrimaryKey(MyNumber);
+            TAS tas1 = tasMapper.selectByPrimaryKey(stuNumber);
+            if(tas1.gettNumber()==tas.gettNumber()){
+                excellentReport.add(reports.get(i));
+            }
+        }
+        return excellentReport;
+    }
 }

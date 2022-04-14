@@ -129,9 +129,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="pStatus_update_input" class="col-sm-2 control-label">状态</label>
-                                        <div class="col-sm-10">
-                                            <%--                            <input type="text" class="form-control" name="pStatus" id="pStatus_update_input" placeholder="年级">--%>
-                                            <select class="form-control" name="pStatus" id="pStatus_update_input" >
+                                        <div class="col-sm-10" disabled="disabled">
+                                            <select class="form-control" name="pStatus" id="pStatus_update_input" disabled="disabled">
                                                 <option>全部</option>
                                                 <option>审核中</option>
                                                 <option>未完成</option>
@@ -306,43 +305,12 @@
                 <!-- Custom Theme JavaScript -->
                 $.getScript("js/custom.min.js");
 
-                //获取各个项目的数量
-                /*                $.ajax({
-                                    type : "POST",
-                                    url : "/admin/getNeedCheck",
-                                    data : "",
-                                    dataType : "json",
-                                    contentType: "application/json",
-                                }).done(function (res) {
-                                    //左侧菜单栏数量
-                                    $("#totalneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts+res.data.wgxwjsgneedcheck.itemsCounts+res.data.wwgdtjyneedcheck.itemsCounts+res.data.zyqcneedcheck.itemsCounts);
-                                    $("#mlxysspneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts);
-                                    $("#wgxwjsgneedcheckspan").text(res.data.wgxwjsgneedcheck.itemsCounts);
-                                    $("#wwgdtjyneedcheckspan").text(res.data.wwgdtjyneedcheck.itemsCounts);
-                                    $("#zyqcneedcheckspan").text(res.data.zyqcneedcheck.itemsCounts);
-                                }).fail(function () {
-                                });*/
-
 
             });//<!-- Menu Plugin JavaScript -->
 
         });
         $("#TopNavigation").load("TopNavigationStudent.jsp" , function () {
 
-
-
-            // $.ajax({
-            //     type : "GET",
-            //     url : "/admin/queryCurrentAdmin",
-            //     data : "",
-            //     dataType : "json",
-            //     contentType: "application/json",
-            // }).done(function (res) {
-            //     $("#adminname1").text(res.data.adminuser.name);
-            //     $("#adminname2").text(res.data.adminuser.name);
-            //     $("#adminusername").text(res.data.adminuser.username);
-            // }).fail(function () {
-            // });
         });
 
 

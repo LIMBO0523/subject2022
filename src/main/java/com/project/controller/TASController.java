@@ -78,7 +78,6 @@ public class TASController {
 
     /**
      * 新增学生保存
-     * @return
      */
     @RequestMapping(value = "/stu",method = RequestMethod.POST)
     @ResponseBody
@@ -116,6 +115,35 @@ public class TASController {
         return Msg.success().add("page",page);
     }
 
+    /**
+     * 显示优秀学生
+     */
+    @RequestMapping(value = "/exstu",method = RequestMethod.GET)
+    @ResponseBody
+    public Msg getExcellentStudents(@RequestParam(value = "stu1")String stu1,
+                                    @RequestParam(value = "stu2")String stu2,
+                                    @RequestParam(value = "stu3")String stu3){
+        PageHelper.startPage(1,3);
+        List<Integer> stu=new ArrayList<>();
+        if (!"undefined".equals(stu1))
+        {
+
+            stu.add(Integer.parseInt(stu1));
+        }
+        if (!"undefined".equals(stu2))
+        {
+
+            stu.add(Integer.parseInt(stu2));
+        }
+        if (!"undefined".equals(stu3))
+        {
+
+            stu.add(Integer.parseInt(stu3));
+        }
+        List<TAS> excellentStu = tasService.getExcellentStu(stu);
+        PageInfo page=new PageInfo(excellentStu,5);
+        return Msg.success().add("page",page);
+    }
     /**
      * 获得所有学生信息
      */

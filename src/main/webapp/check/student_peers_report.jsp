@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
-    <title>我的历史周报</title>
+    <title>同门周报</title>
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
@@ -65,71 +66,61 @@
         <div class="container-fluid">
             <div class="row bg-title">
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-<%--                    <button type="button" class="glyphicon glyphicon-plus btn btn-success" id="new_report_btn">新建周报</button>--%>
-                    <button class="btn btn-success waves-effect waves-light " type="button" id="new_report_btn">
-                                    <span class="btn-label">
-                                        <i class="fa fa-plus"></i>
-                                    </span>新增周报
-                    </button>
                     <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i class="ti-settings text-white"></i></button>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
 
 
-        <div id = "reportmodal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myLargeModalLabel"><span id="idtitle">周报标题占位符</span></h4> </div>
-                    <div class="modal-body">
-                        <input type="hidden" id="hiddenid">
-                        <p id="idsubmitTime">提交时间占位符</p>
-                        <hr />
-                        <h4>本周总结</h4>
-                        <p id="idthisWeek">总结内容</p>
-                        <hr />
-                        <h4>遇到的问题</h4>
-                        <p id="idbugMeet">遇到的问题占位符</p>
-                        <hr />
-                        <h4>下周计划</h4>
-                        <p id="idnextWeek">下周的计划占位符</p>
-                        <hr />
-<%--                        <h4>教师评分</h4>--%>
-<%--                        <p id="idscore">教师评分占位符</p>--%>
-                        <h4>教师评语</h4>
-                        <p id="idreply">教师评语占位符</p>
-                        <p id="idreplyTime">教师回复时间占位符</p>
-                        <hr />
-                        <button class="btn btn-danger waves-effect waves-light" type="button" id="delete_button">
-                                    <span class="btn-label">
-                                        <i class="fa fa-trash-o"></i>
-                                    </span>删除
-                        </button>
+            <div id = "reportmodal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myLargeModalLabel"><span id="idtitle">周报标题占位符</span></h4> </div>
+                        <div class="modal-body">
+                            <p id="idsubmitTime">提交时间占位符</p>
+                            <hr />
+                            <h4>本周总结</h4>
+                            <p id="idthisWeek">总结内容</p>
+                            <hr />
+                            <h4>遇到的问题</h4>
+                            <p id="idbugMeet">遇到的问题占位符</p>
+                            <hr />
+                            <h4>下周计划</h4>
+                            <p id="idnextWeek">下周的计划占位符</p>
+                            <hr />
+                            <h4>教师评分</h4>
+                            <p id="idscore">教师评分占位符</p>
+                            <h4>教师评语</h4>
+                            <p id="idreply">教师评语占位符</p>
+                            <p id="idreplyTime">教师回复时间占位符</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">关闭</button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">关闭</button>
-                    </div>
+                    <!-- /.modal-content -->
                 </div>
-                <!-- /.modal-content -->
+                <!-- /.modal-dialog -->
             </div>
-            <!-- /.modal-dialog -->
-        </div>
 
+
+            <h5 class="page-header">优秀周报</h5>
             <div class="row" id="row_to_insert">
 
             </div>
-            <%--        显示分页信息--%>
-            <div class="row">
-                <%--            分页文字信息--%>
-                <div class="col-md-6" id="pageInfo_area">
+            <h5 class="page-header">优秀学生</h5>
+            <div class="row" id="row_to_insert_2">
 
-                </div>
-                <%--            分页信息--%>
-                <div class="col-md-6" id="page_nav_area">
+            </div>
+            <h5 class="page-header">优秀论文</h5>
+            <div class="row" id="row_to_insert_3">
 
-                </div>
+            </div>
+            <h5 class="page-header">优秀实验</h5>
+            <div class="row" id="row_to_insert_4">
+
             </div>
             <!-- ============================================================== -->
             <!-- Right sidebar -->
@@ -183,10 +174,13 @@
                 <!-- Custom Theme JavaScript -->
                 $.getScript("js/custom.min.js");
 
+
+
             });//<!-- Menu Plugin JavaScript -->
 
         });
         $("#TopNavigation").load("TopNavigationStudent.jsp" , function () {
+
         });
 
 
@@ -206,16 +200,18 @@
 <script src="../plugins/bower_components/sweetalert/jquery.sweet-alert.custom.js"></script>
 <!--遮罩插件-->
 <script src="js/busy-load/dist/app.min.js"></script>
-<script type="text/javascript">
+</body>
+<script>
     var number=<%=session.getAttribute("user_number")%>;
     var reports;
+    var stu;
     $(function () {
-        to_page(1);
+        to_page_report(1);
     })
 
-    function to_page(pn) {
+    function to_page_report(pn) {
         $.ajax({
-            url:"http://localhost:8080/mes/report",
+            url:"http://localhost:8080/mes/exreport",
             data:"pn="+pn,
             type:"get",
             always:function () {
@@ -223,8 +219,7 @@
             },
             success:function (result){
                 show_report_table(result);
-                build_pageInfo(result);
-                build_page_nav(result);
+                show_stu_table();
             },
             fail:function (){
                 swal({
@@ -237,12 +232,9 @@
             }
         })
     }
-   function show_report_table(result){
+    function show_report_table(result){
         $("#row_to_insert").empty();
         reports=result.extend.page.list;
-       // $("#row_to_insert").append(
-       //     result.extend.page.size
-       // )
         if (result.extend.page.size==0){
             $("#row_to_insert").append(
                 "没有记录"
@@ -251,6 +243,7 @@
         }
         for (var i=0;i<result.extend.page.size;i++){
             var brief=reports[i].thisWeek.substring(0,200)+"...";
+            stuNumber[i]=reports[i].stuNumber;
             $("#row_to_insert").append(
                 $("<div>").addClass("col-lg-4 col-md-4 col-sm-4 col-xs-12").append(
                     $("<a>").attr("id", i).attr("href", "javascript:void(0)").attr("onClick", "renderreport(this)").append(
@@ -271,62 +264,6 @@
                 )
             )
         }
-   }
-    //解析显示分页信息
-    function build_pageInfo(result){
-        $("#pageInfo_area").empty();
-        currentPage=result.extend.page.pageNum
-        $("#pageInfo_area").append("当前第"+result.extend.page.pageNum+"页" +
-            ",总"+result.extend.page.pages+"页,共"+result.extend.page.total+"条记录");
-    }
-    //解析分页条信息
-    function build_page_nav(result){
-        $("#page_nav_area").empty();
-        var ul=$("<ul></ul>").addClass("pagination")
-
-        var firstPageLi=$("<li></li>").append($("<a></a>").append("首页"))
-        var prePageLi=$("<li></li>").append($("<a></a>").append("&laquo;"))
-        if (result.extend.page.hasPreviousPage == false)
-        {
-            firstPageLi.addClass("disabled");
-            prePageLi.addClass("disabled");
-        }else{
-            firstPageLi.click(function () {
-                to_page(1);
-            })
-            prePageLi.click(function () {
-                to_page(result.extend.page.pageNum-1)
-            })
-        }
-        var lastPageLi=$("<li></li>").append($("<a></a>").append("末页"))
-        var nextPageLi=$("<li></li>").append($("<a></a>").append("&raquo;"))
-        if (result.extend.page.hasNextPage == false)
-        {
-            lastPageLi.addClass("disabled");
-            nextPageLi.addClass("disabled");
-        }else{
-            lastPageLi.click(function () {
-                to_page(result.extend.page.pages);
-            })
-            nextPageLi.click(function () {
-                to_page(result.extend.page.pageNum+1)
-            })
-        }
-
-        ul.append(firstPageLi).append(prePageLi);
-
-        $.each(result.extend.page.navigatepageNums,function (i,n){
-            var num=$("<li></li>").append($("<a></a>").append(n))
-            if (result.extend.page.pageNum == n){
-                num.addClass("active")
-            }
-            num.click(function (){
-                to_page(n)
-            })
-            ul.append(num);
-        })
-        ul.append(nextPageLi).append(lastPageLi)
-        var nav=$("<nav></nav>").append(ul).appendTo("#page_nav_area");
     }
 
     //渲染modal中的周报
@@ -390,8 +327,8 @@
                 url: "http://localhost:8080/mes/report",
                 data: "id="+id
             }).always(function (){
-                    //隐藏加载中遮罩
-                    $("#page-wrapper").busyLoad("hide");
+                //隐藏加载中遮罩
+                $("#page-wrapper").busyLoad("hide");
             }).done(function (result) {
                 // alert(result.code);
                 if (100 === result.code) {
@@ -424,9 +361,105 @@
             })
         })
     })
-    $("#new_report_btn").click(function (){
-        window.location.href="student_new_report.jsp"
-    })
+    var stuNumber=new Array(3);
+    function show_stu_table() {
+
+        // 显示加载中遮罩
+        $("#page-wrapper").busyLoad("show", {
+            text: "加载中 ...",
+            animation: "fade",
+            background: "rgba(0, 0, 0, 0.86)",
+            spinner: "cube-grid"
+        });
+        //发送请求
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/mes/exstu",
+            data: "stu1="+stuNumber[0]+"&stu2="+stuNumber[1]+"&stu3="+stuNumber[2],
+        }).always(function () {
+            //隐藏加载中遮罩
+            $("#page-wrapper").busyLoad("hide");
+
+        }).done(function (result) {
+            stu=result.extend.page.list;
+            if (100 === result.code) {
+
+                if (result.extend.page.size==0) {
+                    $("#row_to_insert_2").append(
+                        "没有学生"
+                    )
+                    return
+                }
+
+                for (var i = 0; i < result.extend.page.size; i++) {
+
+                    var maleimg = $("<img>").addClass("img-circle img-responsive").attr("src", "avatar/male.png")
+                    var femaleimg = $("<img>").addClass("img-circle img-responsive").attr("src", "avatar/female.png")
+
+                    var imgnode = maleimg;
+
+                    if (stu[i].gender == "女")
+                        imgnode = femaleimg
+
+                    $("#row_to_insert_2").append(
+                        $("<div>").addClass("col-md-4 col-sm-4").append(
+                            $("<a>").attr("id", i).attr("href", "javascript:void(0)").attr("onClick", "renderstudent(this)").append(
+                                $("<div>").addClass("white-box").append(
+                                    $("<div>").addClass("row").append(
+                                        $("<div>").addClass("col-md-4 col-sm-4 text-center").append(
+                                            imgnode
+                                        )
+                                    ).append(
+                                        $("<div>").addClass("col-md-8 col-sm-8").append(
+                                            $("<h3>").append(
+                                                stu[i].name
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "学号：" + stu[i].number
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "邮箱：" + stu[i].email
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "电话：" + stu[i].contact
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                }
+
+
+            } else {
+                swal({
+                    title: "获取学生失败",
+                    text: result.msg,
+                    type: "error",
+                    timer: 1000,
+                    showConfirmButton: false
+                })
+            }
+        }).fail(function () {
+            swal({
+                title: "通信失败",
+                text: "请检查网络",
+                type: "error",
+                showConfirmButton: true,
+                confirmButtonText: "确定",
+            })
+        })
+    }
+
+    function show_paper_table(){
+
+    }
+    function show_expriment_table(){
+
+    }
 </script>
-</body>
 </html>

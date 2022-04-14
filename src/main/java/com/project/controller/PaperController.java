@@ -27,6 +27,27 @@ public class PaperController {
     private PaperService paperService;
 
     /**
+     * 根据id查询文献
+     */
+    @RequestMapping(value = "selectedpaper",method = RequestMethod.GET)
+    @ResponseBody
+    public Msg getSelectedPaper(@RequestParam(value = "id")Integer id){
+        Paper paper = paperService.getPaper(id);
+        return Msg.success().add("paper",paper);
+    }
+    /**
+     * 获得所有文献
+     */
+    @RequestMapping(value = "allpaper",method = RequestMethod.GET)
+    @ResponseBody
+    public Msg getAllPaper(HttpServletRequest req){
+        HttpSession session = req.getSession();
+        String number=session.getAttribute("user_number").toString();
+        List<Paper> allMyPaper = paperService.getAllMyPaper(Integer.parseInt(number));
+        return Msg.success().add("paper",allMyPaper);
+    }
+
+    /**
      * 批量删除文献
      */
     @RequestMapping(value = "/paper/{ids}",method = RequestMethod.DELETE)

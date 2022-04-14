@@ -142,4 +142,11 @@ public class TASService {
         criteria.andNameLessThanOrEqualTo(stuId);
         return tasMapper.selectByExample(tasExample);
     }
+
+    public List<TAS> getExcellentStu(List<Integer> stu) {
+        TASExample tasExample=new TASExample();
+        TASExample.Criteria criteria=tasExample.createCriteria();
+        criteria.andNumberIn(stu);
+        return tasMapper.selectByExample(tasExample);
+    }
 }

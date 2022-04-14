@@ -60,6 +60,20 @@ public class ReportController {
     }
 
     /**
+     * 查询优秀周报
+     */
+    @RequestMapping(value = "exreport",method = RequestMethod.GET)
+    @ResponseBody
+    public Msg getExcellentReport(HttpServletRequest req){
+        PageHelper.startPage(1,3);
+        HttpSession session = req.getSession();
+        String number=session.getAttribute("user_number").toString();
+        List<Reports> excellentReport = reportService.getExcellentReport(Integer.parseInt(number));
+        PageInfo page=new PageInfo(excellentReport,5);
+        return Msg.success().add("page",page);
+    }
+
+    /**
      * 查询所有周报
      */
     @RequestMapping(value = "report",method = RequestMethod.GET)

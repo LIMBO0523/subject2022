@@ -19,6 +19,27 @@ public class ExperimentController {
     @Autowired
     private ExperimentService experimentService;
     /**
+     * 根据id查询实验
+     */
+    @RequestMapping(value = "selectedexp",method = RequestMethod.GET)
+    @ResponseBody
+    public Msg getTheExperiment(@RequestParam(value = "id")Integer id){
+        Experiment experiment = experimentService.getExperiment(id);
+        return Msg.success().add("exp",experiment);
+    }
+    /**
+     * 查询所有实验
+     */
+    @RequestMapping(value = "allexp",method = RequestMethod.GET)
+    @ResponseBody
+    public Msg getAllExperiment(HttpServletRequest req){
+        HttpSession session = req.getSession();
+        String number=session.getAttribute("user_number").toString();
+        List<Experiment> allExperimentByNumber = experimentService.getAllExperimentByNumber(Integer.parseInt(number));
+        return Msg.success().add("exp",allExperimentByNumber);
+
+    }
+    /**
      * 批量删除实验
      */
     @ResponseBody

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="zh">
 
@@ -86,6 +87,58 @@
 						font-family: verdana;
 					}
 				</style>
+<%--				<div id = "expmodal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">--%>
+<%--					<div class="modal-dialog modal-lg">--%>
+<%--						<div class="modal-content">--%>
+<%--							<div class="modal-header">--%>
+<%--								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>--%>
+<%--								<h4 class="modal-title" id="myLargeModalLabel"><span id="idtitle">引用实验数据</span></h4> </div>--%>
+<%--							<div class="modal-body">--%>
+<%--								<input type="hidden" id="hiddenid">--%>
+
+<%--								<div class="form-group">--%>
+<%--									<label  class="control-label">内容</label>--%>
+<%--									<textarea class="form-control" id="exp_context" ></textarea>--%>
+<%--								</div>--%>
+<%--								<button class="btn btn-success waves-effect waves-light" type="button" id="button">--%>
+<%--                                    <span class="btn-label">--%>
+<%--                                        <i class="fa fa-refresh fa-spin"></i>--%>
+<%--                                    </span>更新--%>
+<%--								</button>--%>
+<%--							</div>--%>
+<%--							<div class="modal-footer">--%>
+<%--								<button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">关闭</button>--%>
+<%--							</div>--%>
+<%--						</div>--%>
+<%--						<!-- /.modal-content -->--%>
+<%--					</div>--%>
+<%--					<!-- /.modal-dialog -->--%>
+<%--				</div>--%>
+				<!-- 实验引用的模态框 -->
+				<div class="modal fade" id="expmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" >引用实验数据</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal">
+									<div class="form-group">
+										<label class="col-sm-2 control-label">实验内容</label>
+										<div class="col-sm-10">
+											<textarea type="text" class="form-control" name="eName" id="exp_context" cols="20" rows="30"></textarea>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								<button type="button" class="btn btn-primary" id="exp_yinyong_button">引用</button>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class='container'>
 					<div class="row">
 						<div class="panel">
@@ -111,9 +164,13 @@
 										<a class="nav-link " data-toggle="tab" href="#blocPreview">Preview</a>
 									</li>
 									<li class="ml-auto">
-										<%--				<button class="btn btn-success btn-sm"  id="btnCopyToClipboard" >复制</button>--%>
 										<button class="btn btn-success btn-sm"  id="btnUpdate">更新</button>
+										<select name="status" id="expriment_select">
+
+										</select>
+										<input type="button" class="btn btn-success btn-sm" value="引用"  id="btn_yinyong">
 									</li>
+
 								</ul>
 								<div style="height:4px;"></div>
 								<div style="height:4px;"></div>
@@ -187,43 +244,11 @@
 				<!-- Custom Theme JavaScript -->
 				$.getScript("js/custom.min.js");
 
-				//获取各个项目的数量
-				/*                $.ajax({
-                                    type : "POST",
-                                    url : "/admin/getNeedCheck",
-                                    data : "",
-                                    dataType : "json",
-                                    contentType: "application/json",
-                                }).done(function (res) {
-                                    //左侧菜单栏数量
-                                    $("#totalneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts+res.data.wgxwjsgneedcheck.itemsCounts+res.data.wwgdtjyneedcheck.itemsCounts+res.data.zyqcneedcheck.itemsCounts);
-                                    $("#mlxysspneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts);
-                                    $("#wgxwjsgneedcheckspan").text(res.data.wgxwjsgneedcheck.itemsCounts);
-                                    $("#wwgdtjyneedcheckspan").text(res.data.wwgdtjyneedcheck.itemsCounts);
-                                    $("#zyqcneedcheckspan").text(res.data.zyqcneedcheck.itemsCounts);
-                                }).fail(function () {
-                                });*/
-
-
 			});//<!-- Menu Plugin JavaScript -->
 
 		});
 		$("#TopNavigation").load("TopNavigationStudent.jsp" , function () {
 
-
-
-			// $.ajax({
-			//     type : "GET",
-			//     url : "/admin/queryCurrentAdmin",
-			//     data : "",
-			//     dataType : "json",
-			//     contentType: "application/json",
-			// }).done(function (res) {
-			//     $("#adminname1").text(res.data.adminuser.name);
-			//     $("#adminname2").text(res.data.adminuser.name);
-			//     $("#adminusername").text(res.data.adminuser.username);
-			// }).fail(function () {
-			// });
 		});
 
 
@@ -324,6 +349,7 @@
 		if (user_id>=2000){
 			$("#txtMarkdown").attr("disabled","true")
 		}
+		GetExperiment();
 	})
 	function GetContent() {
 		$.ajax({
@@ -348,9 +374,43 @@
 				alert("更新成功")
 			}
 		})
+	})
+	function GetExperiment(){
+		$.ajax({
+			url:"http://localhost:8080/mes/allexp",
+			type:"get",
+			success: function (result){
+				$("#expriment_select").empty();
+				var exp=result.extend.exp;
+				for (var i=0;i<exp.length;i++)
+				{
+					($("<option></option>").val(exp[i].id).text(exp[i].eName)).appendTo($("#expriment_select"))
+				}
+			}
+		})
+	}
 
+	$("#btn_yinyong").click(function (){
+		$("#expmodal").modal({
+			backdrop:"static"
+		})
+		$.ajax({
+			url:"http://localhost:8080/mes/selectedexp",
+			data: "id="+$("#expriment_select").find("option:selected").val(),
+			type:"get",
+			success:function (result){
+				// result.extend.exp.eStep;
+				$("#exp_context").val(result.extend.exp.eStep)
+			}
+		})
+	})
+	$("#exp_yinyong_button").click(function (){
+		var text=getSelection();
+		var oldContext=$("#txtMarkdown").val()
+		var newContext=oldContext+"\n\r"+"```"+text+"```"+"\n\r";
+		$("#txtMarkdown").empty().val(newContext);
+		$("#expmodal").modal("hide")
 	})
 </script>
-
 </body>
 </html>

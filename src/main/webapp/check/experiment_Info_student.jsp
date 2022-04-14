@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html lang="zh">
 
 <head>
@@ -86,6 +86,37 @@
 						font-family: verdana;
 					}
 				</style>
+				<!--文献引用的模态框 -->
+				<div class="modal fade" id="papermodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" >引用文献</h4>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal">
+									<div class="form-group">
+										<label class="col-sm-2 control-label">关键词</label>
+										<div class="col-sm-10">
+											<input disabled="disabled" type="text" class="form-control"  id="paper_key" >
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">文献内容</label>
+										<div class="col-sm-10">
+											<textarea type="text" class="form-control" name="pName" id="paper_context" cols="20" rows="30"></textarea>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								<button type="button" class="btn btn-primary" id="paper_yinyong_button">引用</button>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class='container'>
 					<div class="row">
 						<div class="panel">
@@ -111,8 +142,11 @@
 										<a class="nav-link " data-toggle="tab" href="#blocPreview">Preview</a>
 									</li>
 									<li class="ml-auto">
-										<%--				<button class="btn btn-success btn-sm"  id="btnCopyToClipboard" >复制</button>--%>
 										<button class="btn btn-success btn-sm"  id="btnUpdate">更新</button>
+											<select id="paper_select">
+
+											</select>
+											<input type="button" class="btn btn-success btn-sm" value="引用"  id="btn_yinyong">
 									</li>
 								</ul>
 								<div style="height:4px;"></div>
@@ -187,43 +221,11 @@
 				<!-- Custom Theme JavaScript -->
 				$.getScript("js/custom.min.js");
 
-				//获取各个项目的数量
-				/*                $.ajax({
-                                    type : "POST",
-                                    url : "/admin/getNeedCheck",
-                                    data : "",
-                                    dataType : "json",
-                                    contentType: "application/json",
-                                }).done(function (res) {
-                                    //左侧菜单栏数量
-                                    $("#totalneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts+res.data.wgxwjsgneedcheck.itemsCounts+res.data.wwgdtjyneedcheck.itemsCounts+res.data.zyqcneedcheck.itemsCounts);
-                                    $("#mlxysspneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts);
-                                    $("#wgxwjsgneedcheckspan").text(res.data.wgxwjsgneedcheck.itemsCounts);
-                                    $("#wwgdtjyneedcheckspan").text(res.data.wwgdtjyneedcheck.itemsCounts);
-                                    $("#zyqcneedcheckspan").text(res.data.zyqcneedcheck.itemsCounts);
-                                }).fail(function () {
-                                });*/
-
-
 			});//<!-- Menu Plugin JavaScript -->
 
 		});
 		$("#TopNavigation").load("TopNavigationStudent.jsp" , function () {
 
-
-
-			// $.ajax({
-			//     type : "GET",
-			//     url : "/admin/queryCurrentAdmin",
-			//     data : "",
-			//     dataType : "json",
-			//     contentType: "application/json",
-			// }).done(function (res) {
-			//     $("#adminname1").text(res.data.adminuser.name);
-			//     $("#adminname2").text(res.data.adminuser.name);
-			//     $("#adminusername").text(res.data.adminuser.username);
-			// }).fail(function () {
-			// });
 		});
 
 
@@ -325,6 +327,7 @@
 		if (user_id>=2000){
 			$("#txtMarkdown").attr("disabled","true")
 		}
+		GetPaper()
 	})
 	function GetContent() {
 		$.ajax({
@@ -350,6 +353,43 @@
 			}
 		})
 
+	})
+
+	function GetPaper(){
+		$.ajax({
+			url:"http://localhost:8080/mes/allpaper",
+			type:"get",
+			success: function (result){
+				$("#paper_select").empty();
+				var paper=result.extend.paper;
+				for (var i=0;i<paper.length;i++)
+				{
+					($("<option></option>").val(paper[i].id).text(paper[i].pName)).appendTo($("#paper_select"))
+				}
+			}
+		})
+	}
+	$("#btn_yinyong").click(function (){
+		$("#papermodal").modal({
+			backdrop:"static"
+		})
+		$.ajax({
+			url:"http://localhost:8080/mes/selectedpaper",
+			data: "id="+$("#paper_select").find("option:selected").val(),
+			type:"get",
+			success:function (result){
+				// result.extend.exp.eStep;
+				$("#paper_key").val(result.extend.paper.paper)
+				$("#paper_context").val(result.extend.paper.content)
+			}
+		})
+	})
+	$("#paper_yinyong_button").click(function (){
+		var text=getSelection();
+		var oldContext=$("#txtMarkdown").val()
+		var newContext=oldContext+"\n"+"```"+text+"```"+"\n";
+		$("#txtMarkdown").empty().val(newContext);
+		$("#papermodal").modal("hide")
 	})
 </script>
 
