@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
-    <title>同门周报</title>
+    <title>优秀成果展示</title>
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
@@ -66,6 +66,7 @@
         <div class="container-fluid">
             <div class="row bg-title">
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                    <button class="glyphicon glyphicon-th btn btn-default">本周课表</button>
                     <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i class="ti-settings text-white"></i></button>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -204,9 +205,10 @@
 <script>
     var number=<%=session.getAttribute("user_number")%>;
     var reports;
-    var stu;
     $(function () {
         to_page_report(1);
+        show_paper_table();
+        show_exp_table();
     })
 
     function to_page_report(pn) {
@@ -381,7 +383,7 @@
             $("#page-wrapper").busyLoad("hide");
 
         }).done(function (result) {
-            stu=result.extend.page.list;
+            var stu=result.extend.page.list;
             if (100 === result.code) {
 
                 if (result.extend.page.size==0) {
@@ -456,10 +458,172 @@
     }
 
     function show_paper_table(){
+        // 显示加载中遮罩
+        $("#page-wrapper").busyLoad("show", {
+            text: "加载中 ...",
+            animation: "fade",
+            background: "rgba(0, 0, 0, 0.86)",
+            spinner: "cube-grid"
+        });
+        //发送请求
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/mes/expaper",
+            data:"id="+number
+        }).always(function () {
+            //隐藏加载中遮罩
+            $("#page-wrapper").busyLoad("hide");
 
+        }).done(function (result){
+            var paper=result.extend.page.list
+            if (100 === result.code) {
+
+                if (result.extend.page.size==0) {
+                    $("#row_to_insert_3").append(
+                        "没有文献"
+                    )
+                    return
+                }
+                for (var i = 0; i < result.extend.page.size; i++) {
+                    var name=paper[i].pName.substring(0,4)+"..."
+                    var key=paper[i].paper.split("-");
+                    var img = $("<img>").addClass("img-circle img-responsive").attr("src", "avatar/paper.png")
+
+                    $("#row_to_insert_3").append(
+                        $("<div>").addClass("col-md-4 col-sm-4").append(
+                            $("<a>").attr("id", i).attr("href", "javascript:void(0)").attr("onClick", "renderstudent(this)").append(
+                                $("<div>").addClass("white-box").append(
+                                    $("<div>").addClass("row").append(
+                                        $("<div>").addClass("col-md-4 col-sm-4 text-center").append(
+                                            img
+                                        )
+                                    ).append(
+                                        $("<div>").addClass("col-md-8 col-sm-8").append(
+                                            $("<h3>").append(
+                                                name
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "学生：" + paper[i].tas.name
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "完成度：" + paper[i].pProgress
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "关键词：" + key
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                }
+
+
+            } else {
+                swal({
+                    title: "获取学生失败",
+                    text: result.msg,
+                    type: "error",
+                    timer: 1000,
+                    showConfirmButton: false
+                })
+            }
+        }).fail(function () {
+            swal({
+                title: "通信失败",
+                text: "请检查网络",
+                type: "error",
+                showConfirmButton: true,
+                confirmButtonText: "确定",
+            })
+        })
     }
-    function show_expriment_table(){
+    function show_exp_table(){
+        // 显示加载中遮罩
+        $("#page-wrapper").busyLoad("show", {
+            text: "加载中 ...",
+            animation: "fade",
+            background: "rgba(0, 0, 0, 0.86)",
+            spinner: "cube-grid"
+        });
+        //发送请求
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/mes/exexp",
+            data:"id="+number
+        }).always(function () {
+            //隐藏加载中遮罩
+            $("#page-wrapper").busyLoad("hide");
 
+        }).done(function (result){
+            var exp=result.extend.page.list
+            if (100 === result.code) {
+
+                if (result.extend.page.size==0) {
+                    $("#row_to_insert_4").append(
+                        "没有文献"
+                    )
+                    return
+                }
+                for (var i = 0; i < result.extend.page.size; i++) {
+                    var img = $("<img>").addClass("img-circle img-responsive").attr("src", "avatar/exp.png")
+
+                    $("#row_to_insert_4").append(
+                        $("<div>").addClass("col-md-4 col-sm-4").append(
+                            $("<a>").attr("id", i).attr("href", "javascript:void(0)").attr("onClick", "renderstudent(this)").append(
+                                $("<div>").addClass("white-box").append(
+                                    $("<div>").addClass("row").append(
+                                        $("<div>").addClass("col-md-4 col-sm-4 text-center").append(
+                                            img
+                                        )
+                                    ).append(
+                                        $("<div>").addClass("col-md-8 col-sm-8").append(
+                                            $("<h3>").append(
+                                                exp[i].eName
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "学生：" + exp[i].tas.name
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "评分呢：" + exp[i].eResult
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "时间：" + exp[i].eTime
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                }
+
+
+            } else {
+                swal({
+                    title: "获取学生失败",
+                    text: result.msg,
+                    type: "error",
+                    timer: 1000,
+                    showConfirmButton: false
+                })
+            }
+        }).fail(function () {
+            swal({
+                title: "通信失败",
+                text: "请检查网络",
+                type: "error",
+                showConfirmButton: true,
+                confirmButtonText: "确定",
+            })
+        })
     }
 </script>
 </html>

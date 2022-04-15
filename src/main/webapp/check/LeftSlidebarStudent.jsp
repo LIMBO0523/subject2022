@@ -22,9 +22,9 @@
 
             <li> <a href="student_info.jsp" class="waves-effect"><i  class="mdi mdi-border-color fa-fw"></i> <span class="hide-menu">个人信息</span></a> </li>
 
-            <li class="devider"></li>
+            <li> <a href="student_peers_report.jsp" class="waves-effect"><i  class="glyphicon glyphicon-signal fa-fw"></i> <span class="hide-menu">优秀展示</span></a> </li>
 
-            <li> <a href="curriculum_student.jsp" class="waves-effect"><i  class="mdi mdi-calendar-text fa-fw"></i> <span class="hide-menu">学生课表</span></a> </li>
+            <li class="devider"></li>
 
             <li> <a href="report_student.jsp" class="waves-effect"><i  class="mdi mdi-calendar-text fa-fw"></i> <span class="hide-menu">我的周报</span></a> </li>
 

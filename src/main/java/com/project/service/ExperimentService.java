@@ -9,10 +9,16 @@ import com.project.dao.TASMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.project.bean.DateUtil.StringTimeTurnToLongTime;
+import static com.project.bean.DateUtil.isThisWeek;
 
 @Service
 public class ExperimentService {
@@ -41,7 +47,8 @@ public class ExperimentService {
      * 新增实验
      */
     public void saveExperiment(Experiment experiment){
-        experiment.seteStatus("审核中");
+        experiment.seteResult(0);
+        experiment.seteStatus("未完成");
         experimentMapper.insert(experiment);
     }
 
@@ -108,5 +115,30 @@ public class ExperimentService {
         ExperimentExample.Criteria criteria= example.createCriteria();
         criteria.andStuNumberEqualTo(number);
         return experimentMapper.selectByExampleWithStu(example);
+    }
+
+    public List<Experiment> getExcellentExp(Integer id) throws ParseException {
+        ExperimentExample example=new ExperimentExample();
+        ExperimentExample.Criteria criteria= example.createCriteria();
+        criteria.andEResultGreaterThan(85);
+        List<Experiment> experiments = experimentMapper.selectByExampleWithStu(example);
+        List<Experiment> excellentexperiments=new ArrayList<>();
+        experiments=experiments.stream().sorted(Comparator.comparing(Experiment::geteResult).reversed()).collect(Collectors.toList());
+        for (int i=0;i<experiments.size();i++){
+            Integer stuNumber=experiments.get(i).getStuNumber();
+            TAS tas = tasMapper.selectByPrimaryKey(id);
+            TAS tas1 = tasMapper.selectByPrimaryKey(stuNumber);
+            if (tas.gettNumber().equals(tas1.gettNumber())){
+                String s = experiments.get(i).geteTime();
+                s=s+" 00:00:00";
+                long l = StringTimeTurnToLongTime(s);
+                if (isThisWeek(l)){
+                    excellentexperiments.add(experiments.get(i));
+                }
+                if (excellentexperiments.size()>=3)
+                    break;
+            }
+        }
+        return excellentexperiments;
     }
 }

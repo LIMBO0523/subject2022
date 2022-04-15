@@ -314,7 +314,7 @@ public class ExperimentExample {
             return (Criteria) this;
         }
 
-        public Criteria andEResultGreaterThan(String value) {
+        public Criteria andEResultGreaterThan(int value) {
             addCriterion("e_result >", value, "eResult");
             return (Criteria) this;
         }

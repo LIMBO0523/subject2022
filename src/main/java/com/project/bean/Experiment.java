@@ -7,7 +7,7 @@ public class Experiment {
 
     private Integer stuNumber;
 
-    private String eResult;
+    private int eResult;
 
     private String eStatus;
 
@@ -51,12 +51,12 @@ public class Experiment {
         this.stuNumber = stuNumber;
     }
 
-    public String geteResult() {
+    public int geteResult() {
         return eResult;
     }
 
-    public void seteResult(String eResult) {
-        this.eResult = eResult == null ? null : eResult.trim();
+    public void seteResult(int eResult) {
+        this.eResult = eResult ;
     }
 
     public String geteStatus() {

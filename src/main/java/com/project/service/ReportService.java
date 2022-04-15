@@ -1,5 +1,6 @@
 package com.project.service;
 
+import com.github.pagehelper.PageHelper;
 import com.project.bean.Reports;
 import com.project.bean.ReportsExample;
 import com.project.bean.TAS;
@@ -9,8 +10,12 @@ import com.project.dao.TASMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static com.project.bean.DateUtil.StringTimeTurnToLongTime;
+import static com.project.bean.DateUtil.isThisWeek;
 
 @Service
 public class ReportService {
@@ -42,7 +47,9 @@ public class ReportService {
             ReportsExample reportExample=new ReportsExample();
             ReportsExample.Criteria criteria=reportExample.createCriteria();
             criteria.andStuNumberEqualTo(id);
-            return reportsMapper.selectByExample(reportExample);
+            List<Reports> reports = reportsMapper.selectByExample(reportExample);
+//            reports = reports.stream().sorted(Comparator.comparing(Reports::getId).reversed()).collect(Collectors.toList());
+            return reports;
         }
     }
     /**
@@ -66,19 +73,30 @@ public class ReportService {
         reportsMapper.updateByPrimaryKeySelective(reports);
     }
 
-    public List<Reports> getExcellentReport(Integer MyNumber) {
+    public List<Reports> getExcellentReport(Integer MyNumber) throws ParseException {
         ReportsExample example=new ReportsExample();
         ReportsExample.Criteria criteria=example.createCriteria();
         criteria.andTaskNumberGreaterThan(5);
         List<Reports> reports = reportsMapper.selectByExample(example);
         List<Reports> excellentReport=new ArrayList<>();
-        for (int i=2;i<reports.size();i++){
-            Integer stuNumber = reports.get(i).getStuNumber();
+        //将List中的Report按任务完成数量由小到大
+        reports=reports.stream().sorted(Comparator.comparing(Reports::getTaskNumber).reversed()).collect(Collectors.toList());
+        for (Reports report : reports) {
+            Integer stuNumber = report.getStuNumber();
             TAS tas = tasMapper.selectByPrimaryKey(MyNumber);
             TAS tas1 = tasMapper.selectByPrimaryKey(stuNumber);
-            if(tas1.gettNumber()==tas.gettNumber()){
-                excellentReport.add(reports.get(i));
+            if (tas1.gettNumber().equals(tas.gettNumber())) {
+                String submitTime = report.getSubmitTime();
+                submitTime = submitTime + " 00:00:00";
+                long l = StringTimeTurnToLongTime(submitTime);
+                if (isThisWeek(l)) {
+                    excellentReport.add(report);
+                }
+                if (excellentReport.size() >= 3) {
+                    break;
+                }
             }
+
         }
         return excellentReport;
     }

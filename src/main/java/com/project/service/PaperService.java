@@ -8,9 +8,17 @@ import com.project.dao.PaperMapper;
 import com.project.dao.TASMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import static com.project.bean.DateUtil.StringTimeTurnToLongTime;
+import static com.project.bean.DateUtil.isThisWeek;
 
 @Service
 public class PaperService {
@@ -37,7 +45,7 @@ public class PaperService {
      */
     public void savePaper(Paper paper){
         paper.setpProgress(0);
-        paper.setpStatus("审核中");
+        paper.setpStatus("未完成");
         paperMapper.insert(paper);
     }
     /**
@@ -110,5 +118,30 @@ public class PaperService {
         PaperExample.Criteria criteria=paperExample.createCriteria();
         criteria.andStuNumberEqualTo(id);
         return paperMapper.selectByExampleWithStu(paperExample);
+    }
+
+    public List<Paper> getExcellentPaper(Integer id) throws ParseException {
+        PaperExample paperExample=new PaperExample();
+        PaperExample.Criteria criteria=paperExample.createCriteria();
+        criteria.andPProgressGreaterThanOrEqualTo(85);
+        List<Paper> papers = paperMapper.selectByExampleWithStu(paperExample);
+        List<Paper> excellentPapers=new ArrayList<>();
+        papers = papers.stream().sorted(Comparator.comparing(Paper::getpProgress).reversed()).collect(Collectors.toList());
+        for (int i=0;i<papers.size();i++){
+            Integer stuNumber=papers.get(i).getStuNumber();
+            TAS tas = tasMapper.selectByPrimaryKey(id);
+            TAS tas1 = tasMapper.selectByPrimaryKey(stuNumber);
+            if (tas1.gettNumber().equals(tas.gettNumber())){
+                String s = papers.get(i).getpTime();
+                s=s+" 00:00:00";
+                long l = StringTimeTurnToLongTime(s);
+                if (isThisWeek(l)){
+                    excellentPapers.add(papers.get(i));
+                }
+                if (excellentPapers.size()>=3)
+                    break;
+            }
+        }
+        return excellentPapers;
     }
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -64,8 +65,8 @@ public class ReportController {
      */
     @RequestMapping(value = "exreport",method = RequestMethod.GET)
     @ResponseBody
-    public Msg getExcellentReport(HttpServletRequest req){
-        PageHelper.startPage(1,3);
+    public Msg getExcellentReport(HttpServletRequest req) throws ParseException {
+        PageHelper.startPage(1,10);
         HttpSession session = req.getSession();
         String number=session.getAttribute("user_number").toString();
         List<Reports> excellentReport = reportService.getExcellentReport(Integer.parseInt(number));
@@ -80,7 +81,8 @@ public class ReportController {
     @ResponseBody
     public Msg getAllReports(@RequestParam(value = "pn",defaultValue = "1")Integer pn,
                              HttpServletRequest req){
-        PageHelper.startPage(pn,3);
+        String orderBy="id DESC";
+        PageHelper.startPage(pn,3,orderBy);
         HttpSession session = req.getSession();
         String number=session.getAttribute("user_number").toString();
         int id=Integer.parseInt(number);

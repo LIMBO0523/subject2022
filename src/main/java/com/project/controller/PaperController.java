@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +26,17 @@ import java.util.Objects;
 public class PaperController {
     @Autowired
     private PaperService paperService;
+    /**
+     * 查询本周优秀文献学习
+     */
+    @RequestMapping(value = "expaper",method = RequestMethod.GET)
+    @ResponseBody
+    public Msg getExcellentPaper(@RequestParam("id")Integer id) throws ParseException {
+        PageHelper.startPage(1,99);
+        List<Paper> paper=paperService.getExcellentPaper(id);
+        PageInfo page=new PageInfo(paper,5);
+        return Msg.success().add("page",page);
+    }
 
     /**
      * 根据id查询文献
