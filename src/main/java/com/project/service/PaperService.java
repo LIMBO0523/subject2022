@@ -37,7 +37,7 @@ public class PaperService {
      * 查询论文
      */
     public Paper getPaper(Integer id){
-        return paperMapper.selectByPrimaryKey(id);
+        return paperMapper.selectByPrimaryKeyWithStu(id);
     }
 
     /**
@@ -141,6 +141,33 @@ public class PaperService {
                 if (excellentPapers.size()>=3)
                     break;
             }
+        }
+        return excellentPapers;
+    }
+
+    public List<Paper> TeacherGetExcellentPaper(Integer id) throws ParseException {
+        TASExample tasExample=new TASExample();
+        TASExample.Criteria criteria=tasExample.createCriteria();
+        criteria.andTNumberEqualTo(id);
+        List<TAS> tas = tasMapper.selectByExample(tasExample);
+        List<Integer> stuNumber=new ArrayList<>();
+        List<Paper> excellentPapers=new ArrayList<>();
+        for (TAS ta : tas) {
+            stuNumber.add(ta.getNumber());
+        }
+        PaperExample paperExample=new PaperExample();
+        PaperExample.Criteria criteria1=paperExample.createCriteria();
+        criteria1.andStuNumberIn(stuNumber).andPProgressGreaterThan(85);
+        List<Paper> papers = paperMapper.selectByExampleWithStu(paperExample);
+        papers = papers.stream().sorted(Comparator.comparing(Paper::getpProgress).reversed()).collect(Collectors.toList());
+        for (Paper paper : papers) {
+            String submitTime = paper.getpTime();
+            submitTime = submitTime + " 00:00:00";
+            long l = StringTimeTurnToLongTime(submitTime);
+            if (isThisWeek(l))
+                excellentPapers.add(paper);
+            if (excellentPapers.size() >= 3)
+                break;
         }
         return excellentPapers;
     }

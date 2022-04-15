@@ -114,16 +114,10 @@
                                     <div class="col-md-12">
                                         <form id="UpdateForm">
                                             <div class="form-group">
-
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">姓名</label>
-                                                <div class="col-sm-11" style="width:800px;" >
-                                                    <input name="name" type="text" readonly="readonly" class="form-control" id="my_name">
+                                                <div class="col-sm-11" style="width:180px;" >
+                                                    <input name="name" type="text" class="form-control" id="my_name">
                                                 </div>
-                                            </div>
-
-
-                                            <div class="form-group">
-
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">性别</label>
                                                 <div class="col-sm-3" style="width:180px;">
                                                     <select class="form-control" name="gender" id="my_gender">
@@ -131,16 +125,18 @@
                                                         <option>女</option>
                                                     </select>
                                                 </div>
-
-
-                                                <label class="col-sm-1 control-label text-right" style="width:130px;">工号</label>
+                                                <label class="col-sm-1 control-label text-right" style="width:130px;">生日</label>
                                                 <div class="col-sm-3" style="width:180px;">
-                                                    <input name="number" type="text" readonly="readonly" placeholder="110" class="form-control" id="my_number">
+                                                    <input name="birthday" type="text" class="form-control" id="my_birthday">
                                                 </div>
                                             </div>
 
 
                                             <div class="form-group">
+                                                <label class="col-sm-1 control-label text-right" style="width:130px;">工号</label>
+                                                <div class="col-sm-3" style="width:180px;">
+                                                    <input name="number" type="text" readonly="readonly" placeholder="110" class="form-control" id="my_number">
+                                                </div>
 
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">职位</label>
                                                 <div class="col-sm-3" style="width:180px;">
@@ -154,25 +150,19 @@
 
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">家庭住址</label>
                                                 <div class="col-sm-3" style="width:180px;">
-                                                    <input name="address" type="text" placeholder="例：08:30" class="form-control" id="my_address">
-                                                </div>
-
-                                                <label class="col-sm-1 control-label text-right" style="width:130px;">联系方式</label>
-                                                <div class="col-sm-3" style="width:180px;">
-                                                    <input name="contact" type="text" placeholder="例：12:35" class="form-control" id="my_contact">
+                                                    <input name="address" type="text"  class="form-control" id="my_address">
                                                 </div>
                                             </div>
 
 
                                             <div class="form-group">
-
+                                                <label class="col-sm-1 control-label text-right" style="width:130px;">联系方式</label>
+                                                <div class="col-sm-3" style="width:180px;">
+                                                    <input name="contact" type="text" class="form-control" id="my_contact">
+                                                </div>
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">邮箱</label>
                                                 <div class="col-sm-3" style="width:180px;">
-                                                    <input name="email" type="text" placeholder="例：2100" class="form-control" id="my_email">
-                                                </div>
-                                                <label class="col-sm-1 control-label text-right" style="width:130px;">生日</label>
-                                                <div class="col-sm-3" style="width:180px;">
-                                                    <input name="birthday" type="text" placeholder="例：1600" class="form-control" id="my_birthday">
+                                                    <input name="email" type="text" class="form-control" id="my_email">
                                                 </div>
 
                                             </div>
@@ -249,43 +239,10 @@
                 <!-- Custom Theme JavaScript -->
                 $.getScript("js/custom.min.js");
 
-                //获取各个项目的数量
-                /*                $.ajax({
-                                    type : "POST",
-                                    url : "/admin/getNeedCheck",
-                                    data : "",
-                                    dataType : "json",
-                                    contentType: "application/json",
-                                }).done(function (res) {
-                                    //左侧菜单栏数量
-                                    $("#totalneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts+res.data.wgxwjsgneedcheck.itemsCounts+res.data.wwgdtjyneedcheck.itemsCounts+res.data.zyqcneedcheck.itemsCounts);
-                                    $("#mlxysspneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts);
-                                    $("#wgxwjsgneedcheckspan").text(res.data.wgxwjsgneedcheck.itemsCounts);
-                                    $("#wwgdtjyneedcheckspan").text(res.data.wwgdtjyneedcheck.itemsCounts);
-                                    $("#zyqcneedcheckspan").text(res.data.zyqcneedcheck.itemsCounts);
-                                }).fail(function () {
-                                });*/
-
-
             });//<!-- Menu Plugin JavaScript -->
 
         });
         $("#TopNavigation").load("TopNavigationStudent.jsp" , function () {
-
-
-
-            // $.ajax({
-            //     type : "GET",
-            //     url : "/admin/queryCurrentAdmin",
-            //     data : "",
-            //     dataType : "json",
-            //     contentType: "application/json",
-            // }).done(function (res) {
-            //     $("#adminname1").text(res.data.adminuser.name);
-            //     $("#adminname2").text(res.data.adminuser.name);
-            //     $("#adminusername").text(res.data.adminuser.username);
-            // }).fail(function () {
-            // });
         });
 
 

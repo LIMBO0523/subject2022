@@ -128,13 +128,13 @@
 
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">日期</label>
                                                 <div class="col-sm-3" style="width:180px;">
-                                                    <input name="pTime" type="date" placeholder="例:19990523" class="form-control">
+                                                    <input name="pTime" type="date" class="form-control">
                                                 </div>
 
 
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">导师</label>
                                                 <div class="col-sm-3" style="width:180px;">
-                                                    <input name="tas.tNumber" type="text" placeholder="联系方式" class="form-control">
+                                                    <input name="tas.tNumber" type="text" class="form-control">
                                                 </div>
                                             </div>
 
@@ -167,9 +167,9 @@
 
 
                                             <div class="form-group">
-                                                <label class="col-sm-1 control-label text-right" style="width:130px;">学习理由</label>
+                                                <label class="col-sm-1 control-label text-right" style="width:130px;">论文介绍</label>
                                                 <div class="col-sm-3" style="width:800px;">
-                                                    <textarea name="reason" type="text" placeholder="有用！" class="form-control"></textarea>
+                                                    <textarea name="reason" type="text" placeholder="..." class="form-control"></textarea>
                                                 </div>
                                             </div>
                                         </form>
@@ -179,7 +179,7 @@
 
                             <div class="col-md-12 text-center">
                                 <button class="btn btn-danger"  type="button"  id="save_paper_button" style="width:80px;">提交</button>
-                                <button class="btn btn-default" type="button"    style="width:80px;">返回</button>
+                                <button class="btn btn-default" type="button" id="back_btn" style="width:80px;">返回</button>
                             </div>
 
 
@@ -242,44 +242,10 @@
             $.getScript("../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js",function () {
                 <!-- Custom Theme JavaScript -->
                 $.getScript("js/custom.min.js");
-
-                //获取各个项目的数量
-                /*                $.ajax({
-                                    type : "POST",
-                                    url : "/admin/getNeedCheck",
-                                    data : "",
-                                    dataType : "json",
-                                    contentType: "application/json",
-                                }).done(function (res) {
-                                    //左侧菜单栏数量
-                                    $("#totalneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts+res.data.wgxwjsgneedcheck.itemsCounts+res.data.wwgdtjyneedcheck.itemsCounts+res.data.zyqcneedcheck.itemsCounts);
-                                    $("#mlxysspneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts);
-                                    $("#wgxwjsgneedcheckspan").text(res.data.wgxwjsgneedcheck.itemsCounts);
-                                    $("#wwgdtjyneedcheckspan").text(res.data.wwgdtjyneedcheck.itemsCounts);
-                                    $("#zyqcneedcheckspan").text(res.data.zyqcneedcheck.itemsCounts);
-                                }).fail(function () {
-                                });*/
-
-
             });//<!-- Menu Plugin JavaScript -->
 
         });
         $("#TopNavigation").load("TopNavigationTeacher.jsp" , function () {
-
-
-
-            // $.ajax({
-            //     type : "GET",
-            //     url : "/admin/queryCurrentAdmin",
-            //     data : "",
-            //     dataType : "json",
-            //     contentType: "application/json",
-            // }).done(function (res) {
-            //     $("#adminname1").text(res.data.adminuser.name);
-            //     $("#adminname2").text(res.data.adminuser.name);
-            //     $("#adminusername").text(res.data.adminuser.username);
-            // }).fail(function () {
-            // });
         });
 
 
@@ -355,6 +321,9 @@
             $(ele).next("span").text(msg);
         }
     }
+    $("#back_btn").click(function (){
+        window.location.href="paper_list_teacher.jsp";
+    })
 </script>
 </body>
 

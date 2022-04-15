@@ -371,7 +371,15 @@
 			data:$("#mainContainer form").serialize(),
 			success: function (result){
 				GetContent();
-				alert("更新成功")
+				if (100 === result.code) {
+					swal({
+						title: "更新成功",
+						text: result.msg,
+						type: "success",
+						timer: 1000,
+					})
+					location.reload()
+				}
 			}
 		})
 	})

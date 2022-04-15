@@ -75,6 +75,7 @@
         <div class="container-fluid" style="padding: 0">
             <div class="row bg-title">
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                    <button class="glyphicon glyphicon-th btn btn-success" id="curriculum_btn">学生课表</button>
                     <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i class="ti-settings text-white"></i></button>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -675,6 +676,9 @@
     $("#stu_search_modal_button").click(function () {
         stuId=$("#search").val();
         to_page(1);
+    })
+    $("#curriculum_btn").click(function (){
+        window.location.href="curriculum_teacher.jsp"
     })
 </script>
 </body>

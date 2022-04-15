@@ -29,7 +29,7 @@ public class ReportService {
      * 老师获取周报
      * 学生查看自己的周报
      */
-    public List<Reports> getStudentsReports(int id) {
+    public List<Reports> getStudentsReports(Integer pn,Integer id) {
         if (id>=2000) {
             TASExample tasExample = new TASExample();
             TASExample.Criteria criteria = tasExample.createCriteria();
@@ -42,14 +42,14 @@ public class ReportService {
             ReportsExample reportExample = new ReportsExample();
             ReportsExample.Criteria criteria1 = reportExample.createCriteria();
             criteria1.andStuNumberIn(stu_number);
+            PageHelper.startPage(pn, 3,"id DESC");
             return reportsMapper.selectByExample(reportExample);
         }else {
             ReportsExample reportExample=new ReportsExample();
             ReportsExample.Criteria criteria=reportExample.createCriteria();
             criteria.andStuNumberEqualTo(id);
-            List<Reports> reports = reportsMapper.selectByExample(reportExample);
-//            reports = reports.stream().sorted(Comparator.comparing(Reports::getId).reversed()).collect(Collectors.toList());
-            return reports;
+            //            reports = reports.stream().sorted(Comparator.comparing(Reports::getId).reversed()).collect(Collectors.toList());
+            return reportsMapper.selectByExample(reportExample);
         }
     }
     /**
@@ -73,7 +73,7 @@ public class ReportService {
         reportsMapper.updateByPrimaryKeySelective(reports);
     }
 
-    public List<Reports> getExcellentReport(Integer MyNumber) throws ParseException {
+    public List<Reports> getExcellentPeerReport(Integer MyNumber) throws ParseException {
         ReportsExample example=new ReportsExample();
         ReportsExample.Criteria criteria=example.createCriteria();
         criteria.andTaskNumberGreaterThan(5);
@@ -97,6 +97,35 @@ public class ReportService {
                 }
             }
 
+        }
+        return excellentReport;
+    }
+
+    public List<Reports> getExcellentStudentReport(int id) throws ParseException {
+        TASExample example=new TASExample();
+        TASExample.Criteria criteria=example.createCriteria();
+        criteria.andTNumberEqualTo(id);
+        List<Integer> stuNumber=new ArrayList<>();
+        List<TAS> tas = tasMapper.selectByExample(example);
+        for (int i=0;i<tas.size();i++){
+            stuNumber.add(tas.get(i).getNumber());
+        }
+        ReportsExample reportsExample=new ReportsExample();
+        ReportsExample.Criteria criteria1=reportsExample.createCriteria();
+        criteria1.andStuNumberIn(stuNumber);
+        List<Reports> reports = reportsMapper.selectByExample(reportsExample);
+        List<Reports> excellentReport=new ArrayList<>();
+        //将List中的Report按任务完成数量由大到小
+        reports=reports.stream().sorted(Comparator.comparing(Reports::getTaskNumber).reversed()).collect(Collectors.toList());
+        for (Reports report : reports) {
+            String submitTime = report.getSubmitTime();
+            submitTime = submitTime + " 00:00:00";
+            long l = StringTimeTurnToLongTime(submitTime);
+            if (isThisWeek(l)) {
+                excellentReport.add(report);
+            }
+            if (excellentReport.size() >= 3)
+                break;
         }
         return excellentReport;
     }

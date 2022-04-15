@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
-    <title>我学生的周报</title>
+    <title>优秀成果展示</title>
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
@@ -66,7 +66,7 @@
         <div class="container-fluid">
             <div class="row bg-title">
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                    <button class="btn btn-success" id="excellent_work_diplay">优秀工作展示</button>
+                    <button class="glyphicon glyphicon-th btn btn-success" id="curriculum_btn">本周课表</button>
                     <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i class="ti-settings text-white"></i></button>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -78,8 +78,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title" id="myLargeModalLabel"><span id="idtitle">周报标题占位符</span></h4>
-                        </div>
+                            <h4 class="modal-title" id="myLargeModalLabel"><span id="idtitle">周报标题占位符</span></h4> </div>
                         <div class="modal-body">
                             <p id="idsubmitTime">提交时间占位符</p>
                             <hr />
@@ -92,30 +91,11 @@
                             <h4>下周计划</h4>
                             <p id="idnextWeek">下周的计划占位符</p>
                             <hr />
-<%--                            <h4>教师评分</h4>--%>
-<%--                            <p id="idscore">教师评分占位符</p>--%>
+                            <h4>教师评分</h4>
+                            <p id="idscore">教师评分占位符</p>
                             <h4>教师评语</h4>
                             <p id="idreply">教师评语占位符</p>
                             <p id="idreplyTime">教师回复时间占位符</p>
-                            <hr />
-                            <h4>提交评价:</h4>
-                            <div>
-                                <input type="hidden" id="hiddenid">
-                                <div class="form-group" hidden="hidden">
-                                    <label for="recipient-score" class="control-label">打分（推荐：100分制）：</label>
-                                    <input type="number" class="form-control" id="recipient-score">
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-content" class="control-label">评语（不多于255字）：</label>
-                                    <textarea class="form-control" id="recipient-content"></textarea>
-                                </div>
-                                <button class="btn btn-success waves-effect waves-light" type="button" id="comment_button">
-                                    <span class="btn-label">
-                                        <i class="fa fa-refresh fa-spin"></i>
-                                    </span>提交或覆盖
-                                </button>
-                            </div>
-                            <hr />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">关闭</button>
@@ -127,18 +107,21 @@
             </div>
 
 
+            <h5 class="page-header">优秀周报</h5>
             <div class="row" id="row_to_insert">
+
             </div>
-            <%--        显示分页信息--%>
-            <div class="row">
-                <%--            分页文字信息--%>
-                <div class="col-md-6" id="pageInfo_area">
+            <h5 class="page-header">优秀学生</h5>
+            <div class="row" id="row_to_insert_2">
 
-                </div>
-                <%--            分页信息--%>
-                <div class="col-md-6" id="page_nav_area">
+            </div>
+            <h5 class="page-header">优秀论文</h5>
+            <div class="row" id="row_to_insert_3">
 
-                </div>
+            </div>
+            <h5 class="page-header">优秀实验</h5>
+            <div class="row" id="row_to_insert_4">
+
             </div>
             <!-- ============================================================== -->
             <!-- Right sidebar -->
@@ -192,10 +175,13 @@
                 <!-- Custom Theme JavaScript -->
                 $.getScript("js/custom.min.js");
 
+
+
             });//<!-- Menu Plugin JavaScript -->
 
         });
         $("#TopNavigation").load("TopNavigationStudent.jsp" , function () {
+
         });
 
 
@@ -219,15 +205,74 @@
 <script>
     var number=<%=session.getAttribute("user_number")%>;
     var reports;
-    var time;
     $(function () {
-        to_page(1);
+        to_page_report(1);
+        show_paper_table();
+        show_exp_table();
     })
+
+    function to_page_report(pn) {
+        $.ajax({
+            url:"http://localhost:8080/mes/exreport",
+            data:"pn="+pn,
+            type:"get",
+            always:function () {
+                $("#page-wrapper").busyLoad("hide");
+            },
+            success:function (result){
+                show_report_table(result);
+                show_stu_table();
+            },
+            fail:function (){
+                swal({
+                    title: "通信失败",
+                    text: "请检查网络",
+                    type: "error",
+                    showConfirmButton: true,
+                    confirmButtonText: "确定",
+                })
+            }
+        })
+    }
+    function show_report_table(result){
+        $("#row_to_insert").empty();
+        reports=result.extend.page.list;
+        if (result.extend.page.size==0){
+            $("#row_to_insert").append(
+                "没有记录"
+            )
+            return
+        }
+        for (var i=0;i<result.extend.page.size;i++){
+            var brief=reports[i].thisWeek.substring(0,200)+"...";
+            stuNumber[i]=reports[i].stuNumber;
+            $("#row_to_insert").append(
+                $("<div>").addClass("col-lg-4 col-md-4 col-sm-4 col-xs-12").append(
+                    $("<a>").attr("id", i).attr("href", "javascript:void(0)").attr("onClick", "renderreport(this)").append(
+                        $("<div>").addClass("panel panel-default").append(
+                            $("<div>").addClass("panel-heading").append("周报").append(
+                                $("<span>").addClass("label label-success m-l-5").append(reports[i].submitTime)
+                            )
+                        ).append(
+                            $("<div>").addClass("panel-wrapper collapse in").append(
+                                $("<div>").addClass("panel-body").append(
+                                    $("<p>").append(
+                                        brief
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        }
+    }
+
     //渲染modal中的周报
-    function renderreport (inparam){
+    function renderreport(inparam) {
         var arrayindex = $(inparam).attr("id")
-        //alert(externalrespnse.data[arrayindex].thisWeek)
-        $("#idtitle").html("周报");
+        // alert(reports[arrayindex].thisWeek);
+        $("#idtitle").html("周报")
 
         if (reports[arrayindex].submitTime != null)
             $("#idsubmitTime").html("提交时间：" + reports[arrayindex].submitTime)
@@ -245,170 +290,87 @@
         else
             $("#idreplyTime").html("")
 
-
-        $("#hiddenid").val(reports[arrayindex].id)//数据库id用于提交评价
-
+        $("#hiddenid").val(reports[arrayindex].id)
 
         $("#reportmodal").modal()
     }
-
-
-
-
-    function to_page(pn) {
-        $.ajax({
-            url:"http://localhost:8080/mes/report",
-            data:"pn="+pn,
-            type:"get",
-            always:function () {
-                $("#page-wrapper").busyLoad("hide");
-            },
-            success:function (result){
-                show_report_table(result);
-                build_pageInfo(result);
-                build_page_nav(result);
-            },
-            fail:function (){
-                swal({
-                    title: "通信失败",
-                    text: "请检查网络",
-                    type: "error",
-                    showConfirmButton: true,
-                    confirmButtonText: "确定",
-                })
-            }
-        })
-    }
-    function show_report_table(result){
-        $("#row_to_insert").empty();
-        reports=result.extend.page.list;
-        // $("#row_to_insert").append(
-        //     result.extend.page.size
-        // )
-        if (result.extend.page.size==0){
-            $("#row_to_insert").append(
-                "没有记录"
-            )
-            return
-        }
-        for (var i=0;i<result.extend.page.size;i++){
-            var brief=reports[i].thisWeek.substring(0,200)+"...";
-            $("#row_to_insert").append(
-                $("<div>").addClass("col-lg-4 col-md-4 col-sm-4 col-xs-12").append(
-                    $("<a>").attr("id", i).attr("href", "javascript:void(0)").attr("onClick", "renderreport(this)").append(
-                        $("<div>").addClass("panel panel-default").append(
-                            $("<div>").addClass("panel-heading").append("周报").append(
-                                $("<span>").addClass("label label-success m-l-5").append("100")
-                            )
-                        ).append(
-                            $("<div>").addClass("panel-wrapper collapse in").append(
-                                $("<div>").addClass("panel-body").append(
-                                    $("<p>").append(
-                                        brief
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            )
-        }
-    }
-    function build_pageInfo(result){
-        $("#pageInfo_area").empty();
-        currentPage=result.extend.page.pageNum
-        $("#pageInfo_area").append("当前第"+result.extend.page.pageNum+"页" +
-            ",总"+result.extend.page.pages+"页,共"+result.extend.page.total+"条记录");
-    }
-    //解析分页条信息
-    function build_page_nav(result){
-        $("#page_nav_area").empty();
-        var ul=$("<ul></ul>").addClass("pagination")
-
-        var firstPageLi=$("<li></li>").append($("<a></a>").append("首页"))
-        var prePageLi=$("<li></li>").append($("<a></a>").append("&laquo;"))
-        if (result.extend.page.hasPreviousPage == false)
-        {
-            firstPageLi.addClass("disabled");
-            prePageLi.addClass("disabled");
-        }else{
-            firstPageLi.click(function () {
-                to_page(1);
-            })
-            prePageLi.click(function () {
-                to_page(result.extend.page.pageNum-1)
-            })
-        }
-        var lastPageLi=$("<li></li>").append($("<a></a>").append("末页"))
-        var nextPageLi=$("<li></li>").append($("<a></a>").append("&raquo;"))
-        if (result.extend.page.hasNextPage == false)
-        {
-            lastPageLi.addClass("disabled");
-            nextPageLi.addClass("disabled");
-        }else{
-            lastPageLi.click(function () {
-                to_page(result.extend.page.pages);
-            })
-            nextPageLi.click(function () {
-                to_page(result.extend.page.pageNum+1)
-            })
-        }
-
-        ul.append(firstPageLi).append(prePageLi);
-
-        $.each(result.extend.page.navigatepageNums,function (i,n){
-            var num=$("<li></li>").append($("<a></a>").append(n))
-            if (result.extend.page.pageNum == n){
-                num.addClass("active")
-            }
-            num.click(function (){
-                to_page(n)
-            })
-            ul.append(num);
-        })
-        ul.append(nextPageLi).append(lastPageLi)
-        var nav=$("<nav></nav>").append(ul).appendTo("#page_nav_area");
-    }
-
-    //提交评论
-    $("#comment_button").click(function () {
+    var stuNumber=new Array(3);
+    function show_stu_table() {
 
         // 显示加载中遮罩
         $("#page-wrapper").busyLoad("show", {
-            text: "提交中 ...",
+            text: "加载中 ...",
             animation: "fade",
             background: "rgba(0, 0, 0, 0.86)",
             spinner: "cube-grid"
         });
-
-        var id= $("#hiddenid").val()
-        var reply= $("#recipient-content").val()
-        var date=new Date();
-        time=date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay()
         //发送请求
         $.ajax({
-            type : "PUT",
-            url : "http://localhost:8080/mes/report",
-            data : "id="+id+"&reply="+reply,
+            type: "GET",
+            url: "http://localhost:8080/mes/exstu",
+            data: "stu1="+stuNumber[0]+"&stu2="+stuNumber[1]+"&stu3="+stuNumber[2],
         }).always(function () {
             //隐藏加载中遮罩
             $("#page-wrapper").busyLoad("hide");
 
         }).done(function (result) {
-            if(100 === result.code){
-                swal({
-                    title: "提交成功",
-                    text: result.msg,
-                    type: "success",
-                    timer: 1000,
-                })
+            var stu=result.extend.page.list;
+            if (100 === result.code) {
 
-                location.reload()
+                if (result.extend.page.size==0) {
+                    $("#row_to_insert_2").append(
+                        "没有学生"
+                    )
+                    return
+                }
 
-            }
-            else{
+                for (var i = 0; i < result.extend.page.size; i++) {
+
+                    var maleimg = $("<img>").addClass("img-circle img-responsive").attr("src", "avatar/male.png")
+                    var femaleimg = $("<img>").addClass("img-circle img-responsive").attr("src", "avatar/female.png")
+
+                    var imgnode = maleimg;
+
+                    if (stu[i].gender == "女")
+                        imgnode = femaleimg
+
+                    $("#row_to_insert_2").append(
+                        $("<div>").addClass("col-md-4 col-sm-4").append(
+                            $("<a>").attr("id", i).attr("href", "javascript:void(0)").attr("onClick", "renderstudent(this)").append(
+                                $("<div>").addClass("white-box").append(
+                                    $("<div>").addClass("row").append(
+                                        $("<div>").addClass("col-md-4 col-sm-4 text-center").append(
+                                            imgnode
+                                        )
+                                    ).append(
+                                        $("<div>").addClass("col-md-8 col-sm-8").append(
+                                            $("<h3>").append(
+                                                stu[i].name
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "学号：" + stu[i].number
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "邮箱：" + stu[i].email
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "电话：" + stu[i].contact
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                }
+
+
+            } else {
                 swal({
-                    title: "提交失败",
+                    title: "获取学生失败",
                     text: result.msg,
                     type: "error",
                     timer: 1000,
@@ -421,12 +383,181 @@
                 text: "请检查网络",
                 type: "error",
                 showConfirmButton: true,
-                confirmButtonText: "重新提交",
+                confirmButtonText: "确定",
             })
         })
-    })
-    $("#excellent_work_diplay").click(function (){
-        window.location.href="student_excellent_work.jsp";
+    }
+
+    function show_paper_table(){
+        // 显示加载中遮罩
+        $("#page-wrapper").busyLoad("show", {
+            text: "加载中 ...",
+            animation: "fade",
+            background: "rgba(0, 0, 0, 0.86)",
+            spinner: "cube-grid"
+        });
+        //发送请求
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/mes/expaper",
+            data:"id="+number
+        }).always(function () {
+            //隐藏加载中遮罩
+            $("#page-wrapper").busyLoad("hide");
+
+        }).done(function (result){
+            var paper=result.extend.page.list
+            if (100 === result.code) {
+
+                if (result.extend.page.size==0) {
+                    $("#row_to_insert_3").append(
+                        "没有文献"
+                    )
+                    return
+                }
+                for (var i = 0; i < result.extend.page.size; i++) {
+                    var name=paper[i].pName.substring(0,4)+"..."
+                    var key=paper[i].paper.split("-");
+                    var img = $("<img>").addClass("img-circle img-responsive").attr("src", "avatar/paper.png")
+
+                    $("#row_to_insert_3").append(
+                        $("<div>").addClass("col-md-4 col-sm-4").append(
+                            $("<a>").attr("id", i).attr("href", "javascript:void(0)").attr("onClick", "renderstudent(this)").append(
+                                $("<div>").addClass("white-box").append(
+                                    $("<div>").addClass("row").append(
+                                        $("<div>").addClass("col-md-4 col-sm-4 text-center").append(
+                                            img
+                                        )
+                                    ).append(
+                                        $("<div>").addClass("col-md-8 col-sm-8").append(
+                                            $("<h3>").append(
+                                                name
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "学生：" + paper[i].tas.name
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "完成度：" + paper[i].pProgress
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "关键词：" + key
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                }
+
+
+            } else {
+                swal({
+                    title: "获取学生失败",
+                    text: result.msg,
+                    type: "error",
+                    timer: 1000,
+                    showConfirmButton: false
+                })
+            }
+        }).fail(function () {
+            swal({
+                title: "通信失败",
+                text: "请检查网络",
+                type: "error",
+                showConfirmButton: true,
+                confirmButtonText: "确定",
+            })
+        })
+    }
+    function show_exp_table(){
+        // 显示加载中遮罩
+        $("#page-wrapper").busyLoad("show", {
+            text: "加载中 ...",
+            animation: "fade",
+            background: "rgba(0, 0, 0, 0.86)",
+            spinner: "cube-grid"
+        });
+        //发送请求
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/mes/exexp",
+            data:"id="+number
+        }).always(function () {
+            //隐藏加载中遮罩
+            $("#page-wrapper").busyLoad("hide");
+
+        }).done(function (result){
+            var exp=result.extend.page.list
+            if (100 === result.code) {
+
+                if (result.extend.page.size==0) {
+                    $("#row_to_insert_4").append(
+                        "没有文献"
+                    )
+                    return
+                }
+                for (var i = 0; i < result.extend.page.size; i++) {
+                    var img = $("<img>").addClass("img-circle img-responsive").attr("src", "avatar/exp.png")
+
+                    $("#row_to_insert_4").append(
+                        $("<div>").addClass("col-md-4 col-sm-4").append(
+                            $("<a>").attr("id", i).attr("href", "javascript:void(0)").attr("onClick", "renderstudent(this)").append(
+                                $("<div>").addClass("white-box").append(
+                                    $("<div>").addClass("row").append(
+                                        $("<div>").addClass("col-md-4 col-sm-4 text-center").append(
+                                            img
+                                        )
+                                    ).append(
+                                        $("<div>").addClass("col-md-8 col-sm-8").append(
+                                            $("<h3>").append(
+                                                exp[i].eName
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "学生：" + exp[i].tas.name
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "评分呢：" + exp[i].eResult
+                                            )
+                                        ).append(
+                                            $("<p>").append(
+                                                "时间：" + exp[i].eTime
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                }
+
+
+            } else {
+                swal({
+                    title: "获取学生失败",
+                    text: result.msg,
+                    type: "error",
+                    timer: 1000,
+                    showConfirmButton: false
+                })
+            }
+        }).fail(function () {
+            swal({
+                title: "通信失败",
+                text: "请检查网络",
+                type: "error",
+                showConfirmButton: true,
+                confirmButtonText: "确定",
+            })
+        })
+    }
+    $("#curriculum_btn").click(function (){
+        window.location.href="curriculum_student.jsp"
     })
 </script>
 </html>

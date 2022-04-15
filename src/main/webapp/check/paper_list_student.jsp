@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <!-- 论文修改的模态框 -->
-                <div class="modal fade" id="PaperUpdateModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -111,28 +111,26 @@
                                     <div class="form-group">
                                         <label for="p_name_update_input" class="col-sm-2 control-label">论文名</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="pName" id="p_name_update_input" placeholder="学号">
+                                            <input type="text" class="form-control" name="pName" id="p_name_update_input" >
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="sNumber_update_input" class="col-sm-2 control-label">学号</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="stuNumber" id="sNumber_update_input" placeholder="姓名">
+                                            <input type="text" class="form-control" name="stuNumber" id="sNumber_update_input" >
                                             <span class="help-block"></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="pProgress_update_input" class="col-sm-2 control-label">进度</label>
+                                        <label for="pProgress_update_input" class="col-sm-2 control-label">评分</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="pProgress" id="pProgress_update_input" placeholder="姓名">
+                                            <input type="text" class="form-control" name="pProgress" id="pProgress_update_input">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="pStatus_update_input" class="col-sm-2 control-label">状态</label>
                                         <div class="col-sm-10" disabled="disabled">
                                             <select class="form-control" name="pStatus" id="pStatus_update_input" disabled="disabled">
-                                                <option>全部</option>
-                                                <option>审核中</option>
                                                 <option>未完成</option>
                                                 <option>完成</option>
                                             </select>
@@ -141,20 +139,20 @@
                                     <div class="form-group">
                                         <label for="pTime_update_input" class="col-sm-2 control-label">时间</label>
                                         <div class="col-sm-10">
-                                            <input type="date" class="form-control" name="pTime" id="pTime_update_input" placeholder="年级">
+                                            <input type="date" class="form-control" name="pTime" id="pTime_update_input">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="pAuthor_update_input" class="col-sm-2 control-label">作者</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="pAuthor" id="pAuthor_update_input" placeholder="Email">
+                                            <input type="text" class="form-control" name="pAuthor" id="pAuthor_update_input">
                                             <span class="help-block"></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="reason_update_input" class="col-sm-2 control-label">原因</label>
+                                        <label for="reason_update_input" class="col-sm-2 control-label">评语/介绍</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="reason" id="reason_update_input" placeholder="联系方式">
+                                            <input type="text" class="form-control" name="reason" id="reason_update_input" disabled="disabled">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -177,6 +175,44 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div id = "PaperUpdateModel" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myLargeModalLabel"><span id="pName">周报标题占位符</span></h4>
+                            </div>
+                            <div class="modal-body">
+                                <p id="pAuthor">作者</p>
+                                <p id="stuNumber">学号占位符</p>
+                                <p id="pStatus">状态</p>
+                                <p id="pTime">时间</p>
+                                <p id="pProgress">评分</p>
+                                <hr />
+                                <h4>关键词</h4>
+                                <p id="paper">介绍</p>
+                                <hr />
+                                <h4>评语/介绍</h4>
+                                <p id="reason">介绍</p>
+                                <hr />
+                                <div>
+                                    <input type="hidden" id="id">
+                                    <button class="btn btn-success waves-effect waves-light" type="button" id="update_btn">
+                                    <span class="btn-label">
+                                        <i class="fa fa-refresh fa-spin"></i>
+                                    </span>更新内容
+                                    </button>
+                                </div>
+                                <hr />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">关闭</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
                 </div>
 
                 <div class="container">
@@ -440,7 +476,10 @@
     $(document).on("click",".check_btn",function (){
         var id=$(this).attr("check-id")
         window.location.href="paper_Info_student.jsp?id="+id
-        // var id=$(this).attr("check-id")
+    })
+    $("#update_btn").click(function (){
+        var id=$("#id").val();
+        window.location.href="paper_Info_student.jsp?id="+id
     })
     //点击编辑按钮，弹出模态框
     $(document).on("click",".edit_btn",function (){
@@ -459,15 +498,16 @@
             type: "get",
             success: function (result){
                 var paper=result.extend.paper;
-                $("#p_name_update_input").val(paper.pName);
-                $("#sNumber_update_input").val(paper.stuNumber);
-                $("#pProgress_update_input").val(paper.pProgress);
-                $("#pStatus_update_input").val(paper.pStatus);
-                $("#pTime_update_input").val(paper.pTime);
-                $("#pAuthor_update_input").val(paper.pAuthor);
-                $("#reason_update_input").val(paper.reason);
-                $("#content_update_input").val(paper.content);
-                $("#paper_update_input").val(paper.paper);
+                $("#pName").html(paper.pName);
+                $("#stuNumber").html("姓名:"+paper.tas.name);
+                $("#pProgress").html("评分:"+paper.pProgress);
+                $("#pStatus").html("状态:"+paper.pStatus);
+                $("#pTime").html("开始时间:"+paper.pTime);
+                $("#pAuthor").html("论文作者:"+paper.pAuthor);
+                $("#reason").html(paper.reason);
+                $("#content").html(paper.content);
+                $("#paper").html(paper.paper);
+                $("#id").val(paper.id)
             }
         })
     }

@@ -375,7 +375,14 @@
 
     //点击返回，返回到HELLO界面
     $("#back_btn").click(function (){
-        window.location.href="come.jsp"
+        var userNumber="<%=session.getAttribute("user_number") %>"
+        if (userNumber>=3000){
+            window.location.href="admin_index.jsp";
+        }else if (userNumber>=2000){
+            window.location.href="teacher_index.jsp";
+        }else {
+            window.location.href="student_index.jsp";
+        }
     })
 </script>
 </body>

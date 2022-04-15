@@ -134,7 +134,6 @@
 
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">年级</label>
                                                 <div class="col-sm-3" style="width:180px;">
-                                                    <%--                                    <input name="tas.grade" type="text"  class="form-control">--%>
                                                     <select class="form-control" name="tas.grade">
                                                         <option> </option>
                                                         <option>研一</option>
@@ -154,12 +153,11 @@
 
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">日期</label>
                                                 <div class="col-sm-3" style="width:180px;">
-                                                    <input name="eTime" type="date" placeholder="20220315" class="form-control">
+                                                    <input name="eTime" type="date" class="form-control">
                                                 </div>
 
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">状态</label>
                                                 <div class="col-sm-3" style="width:180px;">
-                                                    <%--                                    <input name="eStatus" type="text" placeholder="研一" class="form-control">--%>
                                                     <select class="form-control" name="eStatus" id="eStatus_add_input" >
                                                         <option> </option>
                                                         <option>研一</option>
@@ -168,28 +166,20 @@
                                                     </select>
                                                 </div>
                                             </div>
-
-
                                             <div class="form-group">
-
-                                                <label class="col-sm-1 control-label text-right" style="width:130px;">实验理由</label>
+                                                <label class="col-sm-1 control-label text-right" style="width:130px;">实验介绍</label>
                                                 <div class="col-sm-3" style="width:800px;">
-                                                    <input name="eReason" type="text" placeholder="有用！" class="form-control">
+                                                    <input name="eReason" type="text" placeholder="..." class="form-control">
                                                 </div>
                                             </div>
                                         </form>
-
-
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md-12 text-center" id="p">
                                 <button class="submit btn btn-danger" type="button"  id="experiment_save_btn" style="width:80px;">提交</button>
-                                <button class="btn btn-default" type="button" style="width:80px;">返回</button>
+                                <button class="btn btn-default" type="button" id="back_btn" style="width:80px;">返回</button>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -250,43 +240,10 @@
                 <!-- Custom Theme JavaScript -->
                 $.getScript("js/custom.min.js");
 
-                //获取各个项目的数量
-                /*                $.ajax({
-                                    type : "POST",
-                                    url : "/admin/getNeedCheck",
-                                    data : "",
-                                    dataType : "json",
-                                    contentType: "application/json",
-                                }).done(function (res) {
-                                    //左侧菜单栏数量
-                                    $("#totalneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts+res.data.wgxwjsgneedcheck.itemsCounts+res.data.wwgdtjyneedcheck.itemsCounts+res.data.zyqcneedcheck.itemsCounts);
-                                    $("#mlxysspneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts);
-                                    $("#wgxwjsgneedcheckspan").text(res.data.wgxwjsgneedcheck.itemsCounts);
-                                    $("#wwgdtjyneedcheckspan").text(res.data.wwgdtjyneedcheck.itemsCounts);
-                                    $("#zyqcneedcheckspan").text(res.data.zyqcneedcheck.itemsCounts);
-                                }).fail(function () {
-                                });*/
-
-
             });//<!-- Menu Plugin JavaScript -->
 
         });
         $("#TopNavigation").load("TopNavigationStudent.jsp" , function () {
-
-
-
-            // $.ajax({
-            //     type : "GET",
-            //     url : "/admin/queryCurrentAdmin",
-            //     data : "",
-            //     dataType : "json",
-            //     contentType: "application/json",
-            // }).done(function (res) {
-            //     $("#adminname1").text(res.data.adminuser.name);
-            //     $("#adminname2").text(res.data.adminuser.name);
-            //     $("#adminusername").text(res.data.adminuser.username);
-            // }).fail(function () {
-            // });
         });
 
 
@@ -352,6 +309,9 @@
             $(ele).next("span").text(msg);
         }
     }
+    $("#back_btn").click(function (){
+        window.location.href="experiment_list_teacher.jsp"
+    })
 </script>
 </body>
 

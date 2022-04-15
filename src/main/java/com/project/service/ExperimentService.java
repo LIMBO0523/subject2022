@@ -1,5 +1,6 @@
 package com.project.service;
 
+import com.github.pagehelper.PageHelper;
 import com.project.bean.Experiment;
 import com.project.bean.ExperimentExample;
 import com.project.bean.TAS;
@@ -72,12 +73,13 @@ public class ExperimentService {
         }
         if (number>=3000)
             return experimentMapper.selectByExampleWithStu(example1);
-        else if (number<2000)
+        else if (number<2000) {
             return experimentMapper.selectByExampleWithStu(example);
+        }
         else
             return null;
     }
-    public List<Experiment> getAllExperimentByStuNumber(Integer number,String expName,String expStatus){
+    public List<Experiment> getAllExperimentByStuNumber(Integer number,String expName,String expStatus,Integer pn){
         TASExample tasExample=new TASExample();
         TASExample.Criteria criteria=tasExample.createCriteria();
         criteria.andTNumberEqualTo(number);
@@ -96,6 +98,7 @@ public class ExperimentService {
         if (!"undefined".equals(expStatus)){
             criteria1.andEStatusEqualTo(expStatus);
         }
+        PageHelper.startPage(pn, 5);
         return experimentMapper.selectByExampleWithStu(example);
     }
 
@@ -138,6 +141,33 @@ public class ExperimentService {
                 if (excellentexperiments.size()>=3)
                     break;
             }
+        }
+        return excellentexperiments;
+    }
+
+    public List<Experiment> TeacherGetExcellentExp(Integer id) throws ParseException {
+        TASExample tasExample=new TASExample();
+        TASExample.Criteria criteria=tasExample.createCriteria();
+        criteria.andTNumberEqualTo(id);
+        List<TAS> tas = tasMapper.selectByExample(tasExample);
+        List<Integer> stuNumber=new ArrayList<>();
+        for (TAS ta : tas) {
+            stuNumber.add(ta.getNumber());
+        }
+        ExperimentExample example=new ExperimentExample();
+        ExperimentExample.Criteria criteria1=example.createCriteria();
+        criteria1.andStuNumberIn(stuNumber).andEResultGreaterThan(85);
+        List<Experiment> excellentexperiments=new ArrayList<>();
+        List<Experiment> experiments = experimentMapper.selectByExampleWithStu(example);
+        experiments=experiments.stream().sorted(Comparator.comparing(Experiment::geteResult).reversed()).collect(Collectors.toList());
+        for (Experiment experiment : experiments) {
+            String submitTime = experiment.geteTime();
+            submitTime = submitTime + " 00:00:00";
+            long l = StringTimeTurnToLongTime(submitTime);
+            if (isThisWeek(l))
+                excellentexperiments.add(experiment);
+            if (excellentexperiments.size() >= 3)
+                break;
         }
         return excellentexperiments;
     }

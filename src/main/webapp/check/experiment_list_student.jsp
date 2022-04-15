@@ -86,7 +86,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" >学生信息修改</h4>
+                                <h4 class="modal-title" >实验信息修改</h4>
                             </div>
                             <div class="modal-body">
                                 <form class="form-horizontal">
@@ -121,9 +121,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="eReason_update_input" class="col-sm-2 control-label">原因</label>
+                                        <label for="eReason_update_input" class="col-sm-2 control-label">评语/介绍</label>
                                         <div class="col-sm-10">
-                                            <textarea type="text" class="form-control" name="eReason" id="eReason_update_input" ></textarea>
+                                            <textarea type="text" class="form-control" name="eReason" id="eReason_update_input" disabled="disabled" ></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -135,7 +135,7 @@
                                     <div class="form-group">
                                         <label for="eResult_update_input" class="col-sm-2 control-label">实验结果</label>
                                         <div class="col-sm-10">
-                                            <textarea type="text" class="form-control" name="eResult" id="eResult_update_input"></textarea>
+                                            <input type="number" class="form-control" name="eResult" id="eResult_update_input" disabled="disabled">
                                         </div>
                                     </div>
                                 </form>

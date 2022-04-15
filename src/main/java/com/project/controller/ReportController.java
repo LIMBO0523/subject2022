@@ -66,10 +66,15 @@ public class ReportController {
     @RequestMapping(value = "exreport",method = RequestMethod.GET)
     @ResponseBody
     public Msg getExcellentReport(HttpServletRequest req) throws ParseException {
-        PageHelper.startPage(1,10);
         HttpSession session = req.getSession();
         String number=session.getAttribute("user_number").toString();
-        List<Reports> excellentReport = reportService.getExcellentReport(Integer.parseInt(number));
+        List<Reports> excellentReport=new ArrayList<>();
+        int id = Integer.parseInt(number);
+        if (id>=2000){
+            excellentReport = reportService.getExcellentStudentReport(id);
+        }else{
+            excellentReport = reportService.getExcellentPeerReport(id);
+        }
         PageInfo page=new PageInfo(excellentReport,5);
         return Msg.success().add("page",page);
     }
@@ -81,13 +86,18 @@ public class ReportController {
     @ResponseBody
     public Msg getAllReports(@RequestParam(value = "pn",defaultValue = "1")Integer pn,
                              HttpServletRequest req){
-        String orderBy="id DESC";
-        PageHelper.startPage(pn,3,orderBy);
         HttpSession session = req.getSession();
         String number=session.getAttribute("user_number").toString();
-        int id=Integer.parseInt(number);
-        List<Reports> reports=new ArrayList<>();
-        reports = reportService.getStudentsReports(id);
+        Integer id=Integer.parseInt(number);
+        List<Reports> reports;
+        if (id>=2000){
+            reports = reportService.getStudentsReports(pn,id);
+        }else {
+
+            String orderBy = "id DESC";
+            PageHelper.startPage(pn, 3, orderBy);
+            reports = reportService.getStudentsReports(pn,id);
+        }
         PageInfo page=new PageInfo(reports,5);
         return Msg.success().add("page",page);
     }

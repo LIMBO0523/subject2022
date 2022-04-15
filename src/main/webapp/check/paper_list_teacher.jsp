@@ -122,7 +122,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="pProgress_update_input" class="col-sm-2 control-label">进度</label>
+                                        <label for="pProgress_update_input" class="col-sm-2 control-label">评分</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" name="pProgress" id="pProgress_update_input" placeholder="姓名">
                                         </div>
@@ -148,14 +148,14 @@
                                     <div class="form-group">
                                         <label for="pAuthor_update_input" class="col-sm-2 control-label">作者</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="pAuthor" id="pAuthor_update_input" placeholder="Email">
+                                            <input type="text" class="form-control" name="pAuthor" id="pAuthor_update_input">
                                             <span class="help-block"></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="reason_update_input" class="col-sm-2 control-label">原因</label>
+                                        <label for="reason_update_input" class="col-sm-2 control-label">评语/介绍</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="reason" id="reason_update_input" placeholder="联系方式">
+                                            <input type="text" class="form-control" name="reason" id="reason_update_input" >
                                         </div>
                                     </div>
                                     <div class="form-group">

@@ -113,13 +113,6 @@
                                 <div class="panel-body" style="padding-bottom:30px;">
                                     <div class="col-md-12">
                                         <form id="UpdateForm">
-                                            <div>
-<%--                                                <div class="col-sm-12"  >--%>
-<%--                                                    <img src="../plugins/images/users/varun.jpg" >--%>
-<%--                                                </div>--%>
-                                            </div>
-
-
                                             <div class="form-group">
                                                 <label class="col-sm-1 control-label text-right" style="width:130px;">姓名</label>
                                                 <div class="col-sm-4" style="width:180px;" >
@@ -139,16 +132,6 @@
                                                     </select>
                                                 </div>
 
-
-<%--                                                <label class="col-sm-1 control-label text-right" style="width:130px;">年级</label>--%>
-<%--                                                <div class="col-sm-3" style="width:180px;">--%>
-<%--                                                    <select class="form-control" name="grade" id="my_grade" >--%>
-<%--                                                        <option> </option>--%>
-<%--                                                        <option>研一</option>--%>
-<%--                                                        <option>研二</option>--%>
-<%--                                                        <option>研三</option>--%>
-<%--                                                    </select>--%>
-<%--                                                </div>--%>
                                             </div>
 
 
@@ -266,43 +249,12 @@
                 <!-- Custom Theme JavaScript -->
                 $.getScript("js/custom.min.js");
 
-                //获取各个项目的数量
-                /*                $.ajax({
-                                    type : "POST",
-                                    url : "/admin/getNeedCheck",
-                                    data : "",
-                                    dataType : "json",
-                                    contentType: "application/json",
-                                }).done(function (res) {
-                                    //左侧菜单栏数量
-                                    $("#totalneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts+res.data.wgxwjsgneedcheck.itemsCounts+res.data.wwgdtjyneedcheck.itemsCounts+res.data.zyqcneedcheck.itemsCounts);
-                                    $("#mlxysspneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts);
-                                    $("#wgxwjsgneedcheckspan").text(res.data.wgxwjsgneedcheck.itemsCounts);
-                                    $("#wwgdtjyneedcheckspan").text(res.data.wwgdtjyneedcheck.itemsCounts);
-                                    $("#zyqcneedcheckspan").text(res.data.zyqcneedcheck.itemsCounts);
-                                }).fail(function () {
-                                });*/
-
 
             });//<!-- Menu Plugin JavaScript -->
 
         });
         $("#TopNavigation").load("TopNavigationStudent.jsp" , function () {
 
-
-
-            // $.ajax({
-            //     type : "GET",
-            //     url : "/admin/queryCurrentAdmin",
-            //     data : "",
-            //     dataType : "json",
-            //     contentType: "application/json",
-            // }).done(function (res) {
-            //     $("#adminname1").text(res.data.adminuser.name);
-            //     $("#adminname2").text(res.data.adminuser.name);
-            //     $("#adminusername").text(res.data.adminuser.username);
-            // }).fail(function () {
-            // });
         });
 
 

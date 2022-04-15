@@ -66,7 +66,7 @@
         <div class="container-fluid">
             <div class="row bg-title">
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                    <button class="glyphicon glyphicon-th btn btn-default">本周课表</button>
+                    <button class="glyphicon glyphicon-th btn btn-success" id="curriculum_btn">本周课表</button>
                     <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i class="ti-settings text-white"></i></button>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -290,79 +290,11 @@
         else
             $("#idreplyTime").html("")
 
-
-        // if(externalrespnse.data[arrayindex].score!=null||externalrespnse.data[arrayindex].reply!=null){
-        //     $("#delete_button").attr("disabled","true")
-        // }else{
-        //     $("#delete_button").removeAttr("disabled")
-        // }
-
         $("#hiddenid").val(reports[arrayindex].id)
 
         $("#reportmodal").modal()
     }
 
-    $("#delete_button").click(function () {
-
-        swal({
-            title: "确定删除周报吗?",
-            text: "删除后一切数据无法恢复!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "删除",
-            cancelButtonText:"取消",
-            closeOnConfirm: false
-        }, function(){
-            //do delete
-            // 显示加载中遮罩
-            $("#page-wrapper").busyLoad("show", {
-                text: "提交中 ...",
-                animation: "fade",
-                background: "rgba(0, 0, 0, 0.86)",
-                spinner: "cube-grid"
-            });
-            //发送请求
-            var id=$("#hiddenid").val();
-            $.ajax({
-                type: "DElETE",
-                url: "http://localhost:8080/mes/report",
-                data: "id="+id
-            }).always(function (){
-                //隐藏加载中遮罩
-                $("#page-wrapper").busyLoad("hide");
-            }).done(function (result) {
-                // alert(result.code);
-                if (100 === result.code) {
-                    swal({
-                        title: "删除成功",
-                        text: result.msg,
-                        type: "success",
-                        timer: 1000,
-                    })
-                    location.reload()
-
-                }else {
-                    swal({
-                        title: "删除失败",
-                        text: result.msg,
-                        type: "error",
-                        timer: 1000,
-                        showConfirmButton: false
-                    })
-                }
-
-            }).fail(function () {
-                swal({
-                    title: "通信失败",
-                    text: "请检查网络",
-                    type: "error",
-                    showConfirmButton: true,
-                    confirmButtonText: "确定",
-                })
-            })
-        })
-    })
     var stuNumber=new Array(3);
     function show_stu_table() {
 
@@ -625,5 +557,8 @@
             })
         })
     }
+    $("#curriculum_btn").click(function (){
+        window.location.href="curriculum_student.jsp"
+    })
 </script>
 </html>

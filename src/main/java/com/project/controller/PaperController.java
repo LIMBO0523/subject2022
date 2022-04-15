@@ -32,8 +32,12 @@ public class PaperController {
     @RequestMapping(value = "expaper",method = RequestMethod.GET)
     @ResponseBody
     public Msg getExcellentPaper(@RequestParam("id")Integer id) throws ParseException {
-        PageHelper.startPage(1,99);
-        List<Paper> paper=paperService.getExcellentPaper(id);
+        List<Paper> paper=new ArrayList<>();
+        if (id>=2000){
+            paper=paperService.TeacherGetExcellentPaper(id);
+        }else {
+            paper=paperService.getExcellentPaper(id);
+        }
         PageInfo page=new PageInfo(paper,5);
         return Msg.success().add("page",page);
     }

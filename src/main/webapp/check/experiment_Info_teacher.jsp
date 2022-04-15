@@ -80,6 +80,47 @@
 				<!-- /.col-lg-12 -->
 			</div>
 			<div>
+				<div id = "ExpUpdateModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myLargeModalLabel"><span id="idtitle">周报标题占位符</span></h4>
+							</div>
+							<div class="modal-body">
+								<form>
+									<input type="hidden" id="hiddenid" name="id">
+									<div class="form-group">
+										<label for="eStatus_update_input" class="col-sm-2 control-label">状态</label>
+										<select class="form-control" name="eStatus" id="eStatus_update_input" >
+											<option>未完成</option>
+											<option>完成</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label class="control-label">打分（推荐：100分制）：</label>
+										<input type="number" class="form-control" id="eResult_input" name="eResult">
+									</div>
+									<div class="form-group">
+										<label for="recipient-content" class="control-label">评语（不多于255字）：</label>
+										<textarea class="form-control" id="recipient-content" id="eReason_input" name="eReason"></textarea>
+									</div>
+									<button class="btn btn-success waves-effect waves-light" type="button" id="comment_button">
+                                    <span class="btn-label">
+                                        <i class="fa fa-refresh fa-spin"></i>
+                                    </span>提交或覆盖
+									</button>
+								</form>
+								<hr />
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">关闭</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
 				<style>
 					.header-label {
 						font-size: 22px;
@@ -110,8 +151,8 @@
 									<li class="nav-item">
 										<a class="nav-link " data-toggle="tab" href="#blocPreview">Preview</a>
 									</li>
-									<li class="ml-auto" hidden="hidden">
-										<button disabled="disabled" class="btn btn-success btn-sm"  id="btnUpdate">更新</button>
+									<li class="ml-auto">
+										<input type="button" class="btn btn-success btn-sm"  id="btn_comment" value="评分">
 									</li>
 								</ul>
 								<div style="height:4px;"></div>
@@ -120,7 +161,7 @@
 								<div class="tab-content">
 									<div class="tab-pane container active" id="blocMarkdown">
 										<input name="id" hidden="hidden" id="id_input">
-										<textarea id="txtMarkdown" name="eStep" class='form-control' rows="20" cols="80">#写点什么吧！</textarea>
+										<textarea disabled="disabled" id="txtMarkdown" name="eStep" class='form-control' rows="20" cols="80">#写点什么吧！</textarea>
 									</div>
 									<div class="tab-pane container fade" id="blocHtml">
 										<textarea readonly id="txtHtml" class='form-control' rows="20" cols="80"></textarea>
@@ -186,43 +227,10 @@
 				<!-- Custom Theme JavaScript -->
 				$.getScript("js/custom.min.js");
 
-				//获取各个项目的数量
-				/*                $.ajax({
-                                    type : "POST",
-                                    url : "/admin/getNeedCheck",
-                                    data : "",
-                                    dataType : "json",
-                                    contentType: "application/json",
-                                }).done(function (res) {
-                                    //左侧菜单栏数量
-                                    $("#totalneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts+res.data.wgxwjsgneedcheck.itemsCounts+res.data.wwgdtjyneedcheck.itemsCounts+res.data.zyqcneedcheck.itemsCounts);
-                                    $("#mlxysspneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts);
-                                    $("#wgxwjsgneedcheckspan").text(res.data.wgxwjsgneedcheck.itemsCounts);
-                                    $("#wwgdtjyneedcheckspan").text(res.data.wwgdtjyneedcheck.itemsCounts);
-                                    $("#zyqcneedcheckspan").text(res.data.zyqcneedcheck.itemsCounts);
-                                }).fail(function () {
-                                });*/
-
-
 			});//<!-- Menu Plugin JavaScript -->
 
 		});
 		$("#TopNavigation").load("TopNavigationStudent.jsp" , function () {
-
-
-
-			// $.ajax({
-			//     type : "GET",
-			//     url : "/admin/queryCurrentAdmin",
-			//     data : "",
-			//     dataType : "json",
-			//     contentType: "application/json",
-			// }).done(function (res) {
-			//     $("#adminname1").text(res.data.adminuser.name);
-			//     $("#adminname2").text(res.data.adminuser.name);
-			//     $("#adminusername").text(res.data.adminuser.username);
-			// }).fail(function () {
-			// });
 		});
 
 
@@ -334,6 +342,8 @@
 				// alert(paper.content)
 				$("#txtMarkdown").val(exp.eStep);
 				$("#id_input").val(exp.id);
+				$("#idtitle").html(exp.eName);
+				$("#hiddenid").val(exp.id);
 			}
 		})
 	}
@@ -345,10 +355,70 @@
 			data:$("#mainContainer form").serialize(),
 			success: function (result){
 				GetContent();
-				alert("更新成功")
+				if (100 === result.code) {
+					swal({
+						title: "更新成功",
+						text: result.msg,
+						type: "success",
+						timer: 1000,
+					})
+					location.reload()
+				}
 			}
 		})
 
+	})
+	$("#btn_comment").click(function (){
+		$("#ExpUpdateModal").modal({
+			backdrop:"static"
+		});
+	})
+	$("#comment_button").click(function (){
+		// 显示加载中遮罩
+		$("#page-wrapper").busyLoad("show", {
+			text: "提交中 ...",
+			animation: "fade",
+			background: "rgba(0, 0, 0, 0.86)",
+			spinner: "cube-grid"
+		});
+		$.ajax({
+			url: "http://localhost:8080/mes/exp/"+id,
+			type:"PUT",
+			data:$("#ExpUpdateModal form").serialize(),
+			always: function (){
+				//隐藏加载中遮罩
+				$("#page-wrapper").busyLoad("hide");
+			},
+			success: function (result){
+				if (100 === result.code) {
+					swal({
+						title: "更新成功",
+						text: result.msg,
+						type: "success",
+						timer: 1000,
+					})
+					window.location.href="experiment_list_teacher.jsp"
+
+				}else {
+					swal({
+						title: "更新失败",
+						text: result.msg,
+						type: "error",
+						timer: 1000,
+						showConfirmButton: false
+					})
+				}
+			},
+			fail:function () {
+				swal({
+					title: "通信失败",
+					text: "请检查网络",
+					type: "error",
+					showConfirmButton: true,
+					confirmButtonText: "确定",
+				})
+			}
+		})
 	})
 </script>
 

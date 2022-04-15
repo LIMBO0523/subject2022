@@ -26,8 +26,12 @@ public class ExperimentController {
     @RequestMapping(value = "exexp",method = RequestMethod.GET)
     @ResponseBody
     public Msg getExcellentExp(@RequestParam(value = "id")Integer id) throws ParseException {
-        PageHelper.startPage(1,99);
-        List<Experiment> experiments=experimentService.getExcellentExp(id);
+        List<Experiment> experiments=new ArrayList<>();
+        if (id>=2000){
+            experiments=experimentService.TeacherGetExcellentExp(id);
+        }else {
+            experiments=experimentService.getExcellentExp(id);
+        }
         PageInfo page=new PageInfo(experiments,5);
         return Msg.success().add("page",page);
 
@@ -112,16 +116,20 @@ public class ExperimentController {
                                      @RequestParam(value = "expName")String expName,
                                      @RequestParam(value = "expStatus")String expStatus
                                      ,HttpServletRequest req){
-        PageHelper.startPage(pn,5);
+
         HttpSession session = req.getSession();
         String number=session.getAttribute("user_number").toString();
         if ("全部".equals(expStatus))
             expStatus="undefined";
         List<Experiment> experiments;
-        if (Integer.parseInt(number)>=3000||Integer.parseInt(number)<2000)
-            experiments = experimentService.getAllExperiment(Integer.parseInt(number),expName,expStatus);
+        if (Integer.parseInt(number)>=3000||Integer.parseInt(number)<2000) {
+            PageHelper.startPage(pn, 5);
+            experiments = experimentService.getAllExperiment(Integer.parseInt(number), expName, expStatus);
+        }
         else
-            experiments = experimentService.getAllExperimentByStuNumber(Integer.parseInt(number),expName,expStatus);
+        {
+            experiments = experimentService.getAllExperimentByStuNumber(Integer.parseInt(number),expName,expStatus,pn);
+        }
 
         PageInfo page=new PageInfo(experiments,5);
         return Msg.success().add("page",page);
