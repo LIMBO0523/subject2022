@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
-    <title>学生首页</title>
+    <title>新的实验</title>
     <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/animate.min.css"/>
@@ -48,7 +48,7 @@
 <!-- ============================================================== -->
 <div class="preloader">
     <svg class="circular" viewBox="25 25 50 50">
-        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
     </svg>
 </div>
 <!-- ============================================================== -->
@@ -270,7 +270,7 @@
             url: 'http://localhost:8080/mes/exp',
             type: "POST",
             data: $("#new_experiment").serialize(),
-            success: function (result){
+            success: function (){
                 window.location.href="experiment_list_teacher.jsp"
             }
         })

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
-    <title>学生首页</title>
+    <title>已发信息</title>
     <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/animate.min.css"/>

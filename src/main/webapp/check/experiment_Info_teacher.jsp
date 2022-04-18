@@ -9,7 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
-	<title>学生首页</title>
+	<title>实验内容</title>
 	<link rel="stylesheet" type="text/css" href="/mes/static/asset/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/font-awesome.min.css"/>
 	<link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/animate.min.css"/>
@@ -85,7 +85,7 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myLargeModalLabel"><span id="idtitle">周报标题占位符</span></h4>
+								<h4 class="modal-title" id="myLargeModalLabel"><span id="idtitle">实验学习评分</span></h4>
 							</div>
 							<div class="modal-body">
 								<form>

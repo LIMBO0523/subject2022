@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <base href="http://localhost:8080/mes/static/">
-    <title>登录注册</title>
+    <title>登录</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=yes" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <!-- 新 Bootstrap 核心 CSS 文件 -->
@@ -21,7 +21,7 @@
     <div class="main">
         <div class="bg"></div>
         <form class="formone" action="../login" method="post" id="formid">
-            <div class="title">登陆注册</div>
+            <div class="title">登录</div>
             <span class="help-block">${empty param.meg?"请输入用户和密码":param.meg}</span>
             <div class="username"><input type="text" name="luser" id="login-username" v-model="username" value="" placeholder="请输入账号" /></div>
             <div class="password"><input type="password" name="lpass" v-model="password" id="login-password" value="" placeholder="请输入密码" /></div>
