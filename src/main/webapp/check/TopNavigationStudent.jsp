@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- ============================================================== -->
 <!-- Topbar header - style you can find in pages.scss -->
 <!-- ============================================================== -->
@@ -6,7 +6,7 @@
     <div class="navbar-header">
         <div class="top-left-part">
             <!-- Logo -->
-            <a class="logo" href="/mes/index.jsp">
+            <a class="logo" href="../index.jsp">
                 <!-- Logo icon image, you can use font-icon also --><b>
                 <!--This is dark logo icon--><img src="../plugins/images/admin-logo.png" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="../plugins/images/admin-logo-dark.png" alt="home" class="light-logo" />
             </b>
@@ -19,30 +19,6 @@
         <!-- Search input and Toggle icon -->
         <ul class="nav navbar-top-links navbar-left">
             <li><a href="javascript:void(0)" class="open-close waves-effect waves-light"><i class="ti-menu"></i></a></li>
-            <li class="dropdown" >
-                <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"> <i class="mdi mdi-gmail"></i>
-                    <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-                </a>
-                <ul class="dropdown-menu mailbox animated bounceInDown" id="appendtarget">
-                    <li>
-                        <div class="drop-title">这是你的通知</div>
-                    </li>
-
-
-<!--                    <li>
-                        <div class="message-center">
-                            <a href="student_excellent_report.html">
-                                <div class="mail-contnet">
-                                    <h5>你收到了一篇周报</h5> <span class="mail-desc">王慧燕给你分享了一篇周报</span> <span class="time">9:30 AM</span>
-                                </div>
-                            </a>
-                        </div>
-                    </li>-->
-
-
-                </ul>
-                <!-- /.dropdown-messages -->
-            </li>
 
 
         </ul>
@@ -58,7 +34,7 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="login.html"><i class="fa fa-power-off"></i> 注销</a></li>
+                    <li><a href="../index.jsp"><i class="fa fa-power-off"></i> 注销</a></li>
                 </ul>
                 <!-- /.dropdown-user -->
             </li>

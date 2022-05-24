@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html lang="zh">
 
 <head>
@@ -11,10 +11,10 @@
 	<meta name="author" content="">
 	<link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
 	<title>论文内容</title>
-	<link rel="stylesheet" type="text/css" href="/mes/static/asset/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/font-awesome.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/animate.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/mes/static/asset/css/style.css" >
+	<link rel="stylesheet" type="text/css" href="../static/asset/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/animate.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../static/asset/css/style.css" >
 	<!-- 新 Bootstrap 核心 CSS 文件 -->
 	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -49,7 +49,7 @@
 <!-- ============================================================== -->
 <div class="preloader">
 	<svg class="circular" viewBox="25 25 50 50">
-		<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+		<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
 	</svg>
 </div>
 <!-- ============================================================== -->
@@ -82,10 +82,6 @@
 			</div>
 			<div>
 				<style>
-					.header-label {
-						font-size: 22px;
-						font-family: verdana;
-					}
 				</style>
 <%--				<div id = "expmodal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">--%>
 <%--					<div class="modal-dialog modal-lg">--%>
@@ -165,7 +161,7 @@
 									</li>
 									<li class="ml-auto">
 										<button class="btn btn-success btn-sm"  id="btnUpdate">更新</button>
-										<select name="status" id="expriment_select">
+										<select  id="expriment_select">
 
 										</select>
 										<input type="button" class="btn btn-success btn-sm" value="引用"  id="btn_yinyong">
@@ -211,7 +207,7 @@
 							<li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
 							<li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
 							<li><b>深色</b></li>
-							<br/>
+
 							<li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
 							<li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
 							<li><a href="javascript:void(0)" data-theme="gray-dark" class="yellow-dark-theme">9</a></li>
@@ -276,9 +272,9 @@
 <script src="js/busy-load/dist/app.min.js"></script>
 
 
-<script src="/static/js/external/jquery-1.11.1.min.js"></script>
-<script src="/static/js/external/popper-1.16.0.min.js"></script>
-<script src="/static/js/external/bootstrap.min.js"></script>
+<script src="<c:url value="/static/js/external/jquery-1.11.1.min.js"/>"></script>
+<script src="<c:url value="/static/js/external/popper-1.16.0.min.js"/>"></script>
+<script src="<c:url value="/static/js/external/bootstrap.min.js"/>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js"></script>
 
 <script>
@@ -378,7 +374,6 @@
 						type: "success",
 						timer: 1000,
 					})
-					location.reload()
 				}
 			}
 		})

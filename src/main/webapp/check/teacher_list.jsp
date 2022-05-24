@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html lang="zh">
 
 <head>
@@ -10,10 +10,10 @@
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
     <title>教师管理</title>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/font-awesome.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/animate.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/style.css" >
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/animate.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/style.css" >
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
@@ -44,7 +44,7 @@
 <!-- ============================================================== -->
 <div class="preloader">
     <svg class="circular" viewBox="25 25 50 50">
-        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
     </svg>
 </div>
 <!-- ============================================================== -->
@@ -503,7 +503,7 @@
             ul.append(num);
         })
         ul.append(nextPageLi).append(lastPageLi)
-        var nav=$("<nav></nav>").append(ul).appendTo("#page_nav_area");
+        // var nav=$("<nav></nav>").append(ul).appendTo("#page_nav_area");
     }
 
 
@@ -598,7 +598,7 @@
             url: "http://localhost:8080/mes/stu",
             type: "POST",
             data: $("#StuAddModel form").serialize(),
-            success: function (result){
+            success: function (){
                 //员工保存成功
                 //关闭模态框。
                 $("#StuAddModel").modal("hide")
@@ -615,7 +615,7 @@
             url: "http://localhost:8080/mes/stu/"+$(this).attr("check-id"),
             type:"PUT",
             data:"password=123&number="+$(this).attr("check-id"),
-            success: function (result){
+            success: function (){
                 swal({
                     title: "确定重置密码吗?",
                     text: "重置后的默认密码为:123",
@@ -669,7 +669,7 @@
             url: "http://localhost:8080/mes/stu/"+$(this).attr("eidt-id"),
             type:"PUT",
             data:$("#StuUpdateModel form").serialize(),
-            success: function (result){
+            success: function (){
                 $("#StuUpdateModel").modal("hide")
                 to_page(currentPage);
             }

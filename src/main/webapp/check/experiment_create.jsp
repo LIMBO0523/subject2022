@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html lang="zh">
 
 <head>
@@ -10,10 +10,10 @@
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
     <title>新的实验</title>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/font-awesome.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/animate.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/style.css" >
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/animate.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/style.css" >
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -83,13 +83,13 @@
                 <style>
                     .form-element {
                         font-size: 18px;
-                        font-family: 黑体 ;
+                        font-family: 黑体, serif ;
                     }
                     #p{
                         /*width:30px;*/
                         text-align: center;
                         font-size:24px;
-                        font-family:楷体;
+                        font-family: 楷体, serif;
                     }
                 </style>
                 <div class="panel">

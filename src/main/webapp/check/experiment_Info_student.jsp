@@ -10,10 +10,10 @@
 	<meta name="author" content="">
 	<link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
 	<title>实验内容</title>
-	<link rel="stylesheet" type="text/css" href="/mes/static/asset/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/font-awesome.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/animate.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/mes/static/asset/css/style.css" >
+	<link rel="stylesheet" type="text/css" href="../static/asset/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/animate.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../static/asset/css/style.css" >
 	<!-- 新 Bootstrap 核心 CSS 文件 -->
 	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -81,10 +81,6 @@
 			</div>
 			<div>
 				<style>
-					.header-label {
-						font-size: 22px;
-						font-family: verdana;
-					}
 				</style>
 				<!--文献引用的模态框 -->
 				<div class="modal fade" id="papermodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -253,9 +249,9 @@
 <script src="js/busy-load/dist/app.min.js"></script>
 
 
-<script src="/static/js/external/jquery-1.11.1.min.js"></script>
-<script src="/static/js/external/popper-1.16.0.min.js"></script>
-<script src="/static/js/external/bootstrap.min.js"></script>
+<script src="<c:url value="/static/js/external/jquery-1.11.1.min.js"/>"></script>
+<script src="<c:url value="/static/js/external/popper-1.16.0.min.js"/>"></script>
+<script src="<c:url value="/static/js/external/bootstrap.min.js"/>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js"></script>
 
 <script>

@@ -4,18 +4,30 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/list.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/check/LeftSlidebarAdmin.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/check/LeftSlidebarStudent.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/check/TopNavigationStudent.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/check/admin_index.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/check/curriculum_student.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/check/curriculum_teacher.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/check/device_list.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/check/device_maintenance.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/check/experiment_Info_student.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/check/experiment_Info_teacher.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/check/experiment_create.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/check/message_list2.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/check/my_student_report.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/check/paper_Info_student.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/check/paper_create.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/check/paper_list_student.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/check/personal_center.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/check/quality_list.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/check/report_student.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/check/sale_list.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/check/send_list_teacher.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/check/student_info.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/check/student_list.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/check/student_list_admin.jsp" value="file://$PROJECT_DIR$/src/main/webapp/check" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index1.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
       </map>

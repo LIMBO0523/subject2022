@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +39,7 @@
 <!-- ============================================================== -->
 <div class="preloader">
     <svg class="circular" viewBox="25 25 50 50">
-        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
     </svg>
 </div>
 <!-- ============================================================== -->
@@ -73,16 +75,14 @@
                 <div class="col-md-12">
                     <div class="white-box">
                         <h3 class="box-title">产品介绍</h3>
-                        <p>这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统这是一个周报系统
-                        </p>
-                        <p>浙江工商大学:<a href="http://www.hzic.edu.cn/">http://www.hzic.edu.cn/</a></p>
+                        <p>这是一个研究生成长档案管理系统这是一个研究生成长档案管理系统这是一个研究生成长档案管理系统这是一个研究生成长档案管理系统这是一个研究生成长档案管理系统这是一个研究生成长档案管理系统
                         <hr>
                         <h3 class="box-title">产品说明书</h3>
                         <p>点击链接以下载系统说明书: <a href="help.docx">说明书V1.0.0 beta</a></p>
                         <hr>
                         <h3 class="box-title">开发者联系方式</h3>
-                        <p><b>王腾</b></p>
-                        <p>邮箱：<a href="mailto:chwangteng@126.com" style="text-transform:lowercase">chwangteng@126.com</a></p>
+                        <p><b>王宇琛</b></p>
+                        <p>邮箱：<a href="mailto:1132948658@qq.com" style="text-transform:lowercase">1132948658@qq.com</a></p>
                         <ul class="list-inline list-social-icons mb-0">
                             <li class="list-inline-item">
                                 <a href="https://weibo.com/chwangteng">
@@ -140,7 +140,7 @@
                             <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
                             <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
                             <li><b>深色</b></li>
-                            <br/>
+
                             <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
                             <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
                             <li><a href="javascript:void(0)" data-theme="gray-dark" class="yellow-dark-theme">9</a></li>
@@ -167,49 +167,17 @@
 <script src="../plugins/bower_components/jquery/dist/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
-        $("#LeftSlidebar").load("LeftSlidebarStudent.html", function () {
+        $("#LeftSlidebar").load("LeftSlidebarStudent.jsp", function () {
             <!-- Menu Plugin JavaScript -->
             $.getScript("../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js",function () {
                 <!-- Custom Theme JavaScript -->
                 $.getScript("js/custom.min.js");
 
-                //获取各个项目的数量
-                /*                $.ajax({
-                                    type : "POST",
-                                    url : "/admin/getNeedCheck",
-                                    data : "",
-                                    dataType : "json",
-                                    contentType: "application/json",
-                                }).done(function (res) {
-                                    //左侧菜单栏数量
-                                    $("#totalneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts+res.data.wgxwjsgneedcheck.itemsCounts+res.data.wwgdtjyneedcheck.itemsCounts+res.data.zyqcneedcheck.itemsCounts);
-                                    $("#mlxysspneedcheckspan").text(res.data.mlxysspneedcheck.itemsCounts);
-                                    $("#wgxwjsgneedcheckspan").text(res.data.wgxwjsgneedcheck.itemsCounts);
-                                    $("#wwgdtjyneedcheckspan").text(res.data.wwgdtjyneedcheck.itemsCounts);
-                                    $("#zyqcneedcheckspan").text(res.data.zyqcneedcheck.itemsCounts);
-                                }).fail(function () {
-                                });*/
-
-
             });//<!-- Menu Plugin JavaScript -->
 
         });
-        $("#TopNavigation").load("TopNavigationStudent.html" , function () {
+        $("#TopNavigation").load("TopNavigationStudent.jsp" , function () {
 
-
-
-            // $.ajax({
-            //     type : "GET",
-            //     url : "/admin/queryCurrentAdmin",
-            //     data : "",
-            //     dataType : "json",
-            //     contentType: "application/json",
-            // }).done(function (res) {
-            //     $("#adminname1").text(res.data.adminuser.name);
-            //     $("#adminname2").text(res.data.adminuser.name);
-            //     $("#adminusername").text(res.data.adminuser.username);
-            // }).fail(function () {
-            // });
         });
 
 

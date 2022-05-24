@@ -10,10 +10,10 @@
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
     <title>学生课表</title>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/font-awesome.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/animate.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/style.css" >
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/animate.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/style.css" >
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -210,7 +210,7 @@
                             <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
                             <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
                             <li><b>深色</b></li>
-                            <br/>
+
                             <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
                             <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
                             <li><a href="javascript:void(0)" data-theme="gray-dark" class="yellow-dark-theme">9</a></li>

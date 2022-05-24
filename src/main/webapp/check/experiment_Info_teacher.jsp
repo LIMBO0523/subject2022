@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html lang="zh">
 
 <head>
@@ -10,10 +10,10 @@
 	<meta name="author" content="">
 	<link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
 	<title>实验内容</title>
-	<link rel="stylesheet" type="text/css" href="/mes/static/asset/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/font-awesome.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/animate.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/mes/static/asset/css/style.css" >
+	<link rel="stylesheet" type="text/css" href="../static/asset/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/animate.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../static/asset/css/style.css" >
 	<!-- 新 Bootstrap 核心 CSS 文件 -->
 	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -48,7 +48,7 @@
 <!-- ============================================================== -->
 <div class="preloader">
 	<svg class="circular" viewBox="25 25 50 50">
-		<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+		<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
 	</svg>
 </div>
 <!-- ============================================================== -->
@@ -102,8 +102,8 @@
 										<input type="number" class="form-control" id="eResult_input" name="eResult">
 									</div>
 									<div class="form-group">
-										<label for="recipient-content" class="control-label">评语（不多于255字）：</label>
-										<textarea class="form-control" id="recipient-content" id="eReason_input" name="eReason"></textarea>
+										<label  class="control-label">评语（不多于255字）：</label>
+										<textarea class="form-control"  id="eReason_input" name="eReason"></textarea>
 									</div>
 									<button class="btn btn-success waves-effect waves-light" type="button" id="comment_button">
                                     <span class="btn-label">
@@ -122,10 +122,6 @@
 					<!-- /.modal-dialog -->
 				</div>
 				<style>
-					.header-label {
-						font-size: 22px;
-						font-family: verdana;
-					}
 				</style>
 				<div class='container'>
 					<div class="row">
@@ -258,9 +254,9 @@
 <script src="js/busy-load/dist/app.min.js"></script>
 
 
-<script src="/static/js/external/jquery-1.11.1.min.js"></script>
-<script src="/static/js/external/popper-1.16.0.min.js"></script>
-<script src="/static/js/external/bootstrap.min.js"></script>
+<script src="<c:url value="/static/js/external/jquery-1.11.1.min.js"/>"></script>
+<script src="<c:url value="/static/js/external/popper-1.16.0.min.js"/>"></script>
+<script src="<c:url value="/static/js/external/bootstrap.min.js"/>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js"></script>
 
 <script>

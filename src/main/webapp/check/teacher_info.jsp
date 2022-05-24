@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html lang="zh">
 
 <head>
@@ -10,10 +10,10 @@
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
     <title>个人信息</title>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/font-awesome.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/animate.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/style.css" >
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/animate.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/style.css" >
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -48,7 +48,7 @@
 <!-- ============================================================== -->
 <div class="preloader">
     <svg class="circular" viewBox="25 25 50 50">
-        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
     </svg>
 </div>
 <!-- ============================================================== -->
@@ -300,7 +300,7 @@
             url: "http://localhost:8080/mes/stu/"+<%=session.getAttribute("user_number") %>,
             type:"PUT",
             data:$("#UpdateForm").serialize(),
-            success: function (result){
+            success: function (){
                 $("#my_information").modal("hide")
                 window.location.href="teacher_info.jsp"
             }

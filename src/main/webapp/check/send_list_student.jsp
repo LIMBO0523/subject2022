@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="en">
 
 <head>
@@ -9,10 +9,10 @@
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
     <title>已发信息</title>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/font-awesome.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/animate.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/style.css" >
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/animate.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/style.css" >
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -47,7 +47,7 @@
 <!-- ============================================================== -->
 <div class="preloader">
     <svg class="circular" viewBox="25 25 50 50">
-        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
     </svg>
 </div>
 <!-- ============================================================== -->
@@ -347,8 +347,8 @@
             var checkBoxTd = $("<td></td>").append(" <input type= 'checkbox' class = 'check_item' />");
             var msgIdTd=$("<td></td>").append(item.id);
             var msgContextTd=$("<td></td>").append(s);
-            var msgmSenderTd=$("<td></td>").append(item.mSender).attr("hiddent","hidden");
-            var msgmRecipientTd=$("<td></td>").append(item.mRecipient).attr("hiddent","hidden");
+            // var msgmSenderTd=$("<td></td>").append(item.mSender).attr("hiddent","hidden");
+            // var msgmRecipientTd=$("<td></td>").append(item.mRecipient).attr("hiddent","hidden");
             var msgTimeTd=$("<td></td>").append(item.mTime);
             var msgStatusTd=$("<td></td>").append(item.mStatus=="y"?"已读":"未读");
             var editBtn=$("<button></button>").addClass("btn btn-info btn-sm edit_btn")
@@ -433,7 +433,7 @@
             ul.append(num);
         })
         ul.append(nextPageLi).append(lastPageLi)
-        var nav=$("<nav></nav>").append(ul).appendTo("#page_nav_area");
+        // var nav=$("<nav></nav>").append(ul).appendTo("#page_nav_area");
     }
 
     //点击新增按钮，弹出模态框
@@ -451,7 +451,7 @@
             url: "http://localhost:8080/mes/msg",
             type: "POST",
             data: $("#NewMessageModel form").serialize(),
-            success: function (result){
+            success: function (){
                 //员工保存成功
                 //关闭模态框。
                 $("#NewMessageModel").modal("hide")
@@ -497,7 +497,7 @@
             url: "http://localhost:8080/mes/msg/",
             type:"POST",
             data:$("#MessageAddModel form").serialize(),
-            success: function (result){
+            success: function (){
                 $("#MessageAddModel").modal("hide")
                 $.ajax({
                     url: "http://localhost:8080/mes/msg2/"+message_id,

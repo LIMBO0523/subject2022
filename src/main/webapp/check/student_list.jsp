@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html lang="zh">
 
 <head>
@@ -10,10 +10,10 @@
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
     <title>学生管理</title>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/font-awesome.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/plugins/animate.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/mes/static/asset/css/style.css" >
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/plugins/animate.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/asset/css/style.css" >
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -48,7 +48,7 @@
 <!-- ============================================================== -->
 <div class="preloader">
     <svg class="circular" viewBox="25 25 50 50">
-        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle>
     </svg>
 </div>
 <!-- ============================================================== -->
@@ -75,7 +75,6 @@
         <div class="container-fluid" style="padding: 0">
             <div class="row bg-title">
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                    <button class="glyphicon glyphicon-th btn btn-success" id="curriculum_btn">学生课表</button>
                     <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i class="ti-settings text-white"></i></button>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -409,7 +408,7 @@
             //为编辑按钮添加一个自定义的属性
             editBtn.attr("edit-id" ,item.number);
             var checkBtn=$("<button></button>").addClass("btn btn-info btn-sm check_btn")
-                .append($("<span></span>").addClass("glyphicon glyphicon-search")).append("查看");
+                .append($("<span></span>").addClass("glyphicon glyphicon-search")).append("课表");
             checkBtn.attr("check-id",item.number);
             var deleteBtn=$("<button></button>").addClass("btn btn-danger btn-sm delete_btn")
                 .append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("删除");
@@ -475,7 +474,7 @@
             ul.append(num);
         })
         ul.append(nextPageLi).append(lastPageLi)
-        var nav=$("<nav></nav>").append(ul).appendTo("#page_nav_area");
+        // var nav=$("<nav></nav>").append(ul).appendTo("#page_nav_area");
     }
 
 
@@ -508,7 +507,7 @@
             show_validate_msg("#stuName_add_input","success","");
         }
         var stuEmial=$("#stuEmail_add_input").val();
-        var regEmail=/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+        var regEmail=/^([a-z0-9_.-]+)@([\da-z.-]+)\.([a-z.]{2,6})$/;
         if (!regEmail.test(stuEmial)){
             // alert("邮箱格式不正确");
             show_validate_msg("#stuEmail_add_input","error","邮箱格式不正确")
@@ -517,7 +516,7 @@
             show_validate_msg("#stuEmail_add_input","success","")
         }
         var stuContact=$("#stuContact_add_input").val();
-        var regContact=/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
+        var regContact=/^(13[0-9]|14[5|7]|15[0|12|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
         if (!regContact.test(stuContact)){
             show_validate_msg("#stuContact_add_input","error","请输入正确的电话号码");
             return false;
@@ -570,7 +569,7 @@
             url: "http://localhost:8080/mes/stu",
             type: "POST",
             data: $("#StuAddModel form").serialize(),
-            success: function (result){
+            success: function (){
                 //员工保存成功
                 //关闭模态框。
                 $("#StuAddModel").modal("hide")
@@ -620,13 +619,15 @@
             url: "http://localhost:8080/mes/stu/"+$(this).attr("eidt-id"),
             type:"PUT",
             data:$("#StuUpdateModel form").serialize(),
-            success: function (result){
+            success: function (){
                 $("#StuUpdateModel").modal("hide")
                 to_page(currentPage);
             }
         })
     })
-
+    $(document).on("click",".check_btn",function (){
+        window.location.href="curriculum_teacher.jsp"
+    })
     $(document).on("click",".delete_btn",function (){
         //弹出确认删除对话框
         var stu_name = $(this).parents("tr").find("td:eq(2)").text();
@@ -676,9 +677,6 @@
     $("#stu_search_modal_button").click(function () {
         stuId=$("#search").val();
         to_page(1);
-    })
-    $("#curriculum_btn").click(function (){
-        window.location.href="curriculum_teacher.jsp"
     })
 </script>
 </body>
