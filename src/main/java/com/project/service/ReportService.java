@@ -42,7 +42,7 @@ public class ReportService {
             ReportsExample reportExample = new ReportsExample();
             ReportsExample.Criteria criteria1 = reportExample.createCriteria();
             criteria1.andStuNumberIn(stu_number);
-            PageHelper.startPage(pn, 3,"id DESC");
+            PageHelper.startPage(pn, 6,"id DESC");
             return reportsMapper.selectByExample(reportExample);
         }else {
             ReportsExample reportExample=new ReportsExample();

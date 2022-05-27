@@ -470,7 +470,7 @@
             ul.append(num);
         })
         ul.append(nextPageLi).append(lastPageLi)
-        // var nav=$("<nav></nav>").append(ul).appendTo("#page_nav_area");
+        var nav=$("<nav></nav>").append(ul).appendTo("#page_nav_area");
     }
     //点击内容按钮进行内容更新
     $(document).on("click",".check_btn",function (){

@@ -95,7 +95,7 @@ public class ReportController {
         }else {
 
             String orderBy = "id DESC";
-            PageHelper.startPage(pn, 3, orderBy);
+            PageHelper.startPage(pn, 6, orderBy);
             reports = reportService.getStudentsReports(pn,id);
         }
         PageInfo page=new PageInfo(reports,5);

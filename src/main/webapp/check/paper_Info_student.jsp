@@ -272,9 +272,9 @@
 <script src="js/busy-load/dist/app.min.js"></script>
 
 
-<script src="<c:url value="/static/js/external/jquery-1.11.1.min.js"/>"></script>
-<script src="<c:url value="/static/js/external/popper-1.16.0.min.js"/>"></script>
-<script src="<c:url value="/static/js/external/bootstrap.min.js"/>"></script>
+<script src="</static/js/external/jquery-1.11.1.min.js"></script>
+<script src="/static/js/external/popper-1.16.0.min.js"></script>
+<script src="/static/js/external/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js"></script>
 
 <script>

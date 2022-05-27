@@ -503,7 +503,7 @@
             ul.append(num);
         })
         ul.append(nextPageLi).append(lastPageLi)
-        // var nav=$("<nav></nav>").append(ul).appendTo("#page_nav_area");
+        var nav=$("<nav></nav>").append(ul).appendTo("#page_nav_area");
     }
 
 

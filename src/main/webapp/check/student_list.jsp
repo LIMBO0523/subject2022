@@ -80,6 +80,69 @@
                 <!-- /.col-lg-12 -->
             </div>
             <div>
+                <!-- 学生统计模态框 -->
+                <div class="modal fade" id="StuModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" >学生数据统计</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="stuName_add_input" class="col-sm-2 control-label">姓名</label>
+                                        <div class="col-sm-10">
+                                           王宇琛
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-6 control-label">本学期:2022年春</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">完成任务:</label>
+                                        <div class="col-sm-10">10</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stuEmail_add_input" class="col-sm-2 control-label">完成文献:</label>
+                                        <div class="col-sm-10">1</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stuEmail_add_input" class="col-sm-2 control-label">完成实验:</label>
+                                        <div class="col-sm-10">3</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stuEmail_add_input" class="col-sm-2 control-label">其他任务:</label>
+                                        <div class="col-sm-10">6</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-6 control-label">入学至今</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">完成任务:</label>
+                                        <div class="col-sm-10">11</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stuEmail_add_input" class="col-sm-2 control-label">完成文献:</label>
+                                        <div class="col-sm-10">1</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stuEmail_add_input" class="col-sm-2 control-label">完成实验:</label>
+                                        <div class="col-sm-10">4</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stuEmail_add_input" class="col-sm-2 control-label">其他任务:</label>
+                                        <div class="col-sm-10">6</div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- 学生修改的模态框 -->
                 <div class="modal fade" id="StuUpdateModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
@@ -416,7 +479,7 @@
             var btnTd=$("<td></td>").append(editBtn).append(" ").append(checkBtn).append(" ").append(deleteBtn);
             $("<tr></tr>").append(checkBoxTd).append(stuIdTd).append(stuNnameTd)
                 .append(stuGenderTd).append(stuEmailTd)
-                .append(stuContactTd).append(btnTd)
+                .append(stuContactTd).append(btnTd).addClass("tongji")
                 .appendTo("#stu_table tbody");
         })
     }
@@ -474,7 +537,7 @@
             ul.append(num);
         })
         ul.append(nextPageLi).append(lastPageLi)
-        // var nav=$("<nav></nav>").append(ul).appendTo("#page_nav_area");
+        var nav=$("<nav></nav>").append(ul).appendTo("#page_nav_area");
     }
 
 
@@ -485,6 +548,7 @@
             backdrop:"static"
         })
     })
+
 
     //检验表单数据
     function validate_add_form1(){
@@ -587,6 +651,12 @@
         $("#stu_update_butten").attr("edit-id",$(this).attr("edit-id"))
         //调出模态框
         $("#StuUpdateModel").modal({
+            backdrop:"static"
+        })
+    })
+    $(document).on("click",".tongji",function (){
+        //调出模态框
+        $("#StuModel").modal({
             backdrop:"static"
         })
     })

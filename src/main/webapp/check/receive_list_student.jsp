@@ -450,7 +450,7 @@
             ul.append(num);
         })
         ul.append(nextPageLi).append(lastPageLi)
-        // var nav=$("<nav></nav>").append(ul).appendTo("#page_nav_area");
+        var nav=$("<nav></nav>").append(ul).appendTo("#page_nav_area");
     }
 
     //点击新增按钮，弹出模态框
